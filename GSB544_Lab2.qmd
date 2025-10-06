@@ -14,7 +14,7 @@ Import the Kaggle dataset:
 import pandas as pd
 import numpy as np
 df_avocado = pd.read_csv("/Users/diyapatel/Downloads/avocado-updated-2020.csv")
-print(df.head())
+print(df_avocado.head())
 ```
 
 Briefly describe the dataset:
@@ -29,44 +29,27 @@ df_avocado.describe()
 
 ```{python}
 df_avocado=df_avocado.dropna()
-df_avocado = df_avocado.rename(columns={'4046':'small', '4225':'medium', '4770':'large'})
+df_avocado = df_avocado.rename(columns={'4046':'small', '4225':'large', '4770':'xlarge'})
 df_avocado
 ```
 
-```{python}
-df_avocado['geography'].unique()[:20]
-df_avocado['geography'].describe()
-```
 ```{python}
 df_avocado["geography"].value_counts()
 ```
 There should be 3 unique dataframes for geography. One for the national level ('Total U.S'), one for region ('West, etc'), and one for city
 
 Replace the states to their respective regions
-```{python}
-state_to_region = {
-    "California": "West", 
-    "South Carolina": "Southeast",
-}
-```
-```{python}
-national = ['Total U.S.']
-regions = ['West', 'Northeast', 'Southeast', 'Northern New England', 'Plains', 
-'South Central', 'Midsouth', 'Great Lakes']
-
-cities
-```
 
 #Exercise 3 - which major geographical region sold the most total organic, small Hass avocados in 2017?
 
 ```{python}
 #Map out the regions. List out all of the regions shown when you value_counts along with the states of California and South Carolina, they are also regions as well
 df_avocado['small']=pd.to_numeric(df_avocado['small'], errors='coerce')
-regions = ['Northeast', 'Northern New England', 'Plains', 'Southeast', 'West', 'Midsouth', 'Great Lakes', 'California', 'South Carolina', 'West Tex/New Mexico']
+regions = ['Northeast', 'Northern New England', 'Plains', 'Southeast', 'West', 'Midsouth', 'Great Lakes', 'California', 'South Carolina', 'West Tex/New Mexico', 'South Central']
 filter = df_avocado[
-    (df["geography"].isin(regions)) & 
-    (df["type"] == "organic") & 
-    (df["year"] == 2017)
+    (df_avocado["geography"].isin(regions)) & 
+    (df_avocado["type"] == "organic") & 
+    (df_avocado["year"] == 2017)
 ]
 
 group_by=filter.groupby('geography')['small'].sum().sort_values(ascending=False)
@@ -98,14 +81,14 @@ May has the highest average volume of avocado sales
 
 df_avocado['total_volume']=pd.to_numeric(df_avocado['total_volume'], errors='coerce')
 metro_regions = ['Albany', 'Sacramento', 'Orlando', 'Philadelphia', 'Phoenix/Tucson', 'Pittsburgh', 'Portland', 
-'Raleigh/Greensboro', 'Richmond/Norfolk', 'Roanoke', 'San Diego', 'Atlanta', 'San Francisco', 'Seattle', 'South Central',
+'Raleigh/Greensboro', 'Richmond/Norfolk', 'Roanoke', 'San Diego', 'Atlanta', 'San Francisco', 'Seattle',
 'Spokane', 'St. Louis', 'Syracuse', 'Tampa', 'New York', 'New Orleans/Mobile', 'Nashville', 'Baltimore/Washington', 'Boise', 
 'Boston', 'Buffalo/Rochester', 'Charlotte', 'Chicago', 'Cincinnati/Dayton', 'Columbus', 'Dallas/Ft. Worth', 'Denver', 
 'Detroit', 'Grand Rapids', 'Harrisburg/Scranton', 'Hartford/Springfield', 'Houston', 'Indianapolis', 'Jacksonville', 'Las Vegas', 'Los Angeles', 
 'Louisville', 'Miami/Ft. Lauderdale']
 
 filter = df_avocado[
-    (df["geography"].isin(metro_regions))]
+    (df_avocado["geography"].isin(metro_regions))]
 
 group_by=filter.groupby('geography')['total_volume'].sum().sort_values(ascending=False)
 
@@ -146,5 +129,66 @@ df_california = df_avocado[california_mask]
 
 7. In which California regions is the price of organic versus conventional avocados most different? 
 ```{python}
+wide_prices = df_california.pivot_table(index="geography", columns='type', values='average_price', aggfunc='mean')
+
+wide_prices
+
+wide_prices['price_diff'] = wide_prices['organic'] - wide_prices['conventional']
+
+wide_prices
+
+wide_prices_sorted = wide_prices.sort_values(by='price_diff', ascending=False)
+
+wide_prices_sorted
+```
+
+Summary Statistic
+```{python}
+statistics = df_california.groupby(['geography', 'type'])['average_price'].describe()
+statistics
+```
+
+Plot
+```{python}
+import plotnine as p9
+from plotnine import ggplot, aes, labs, geom_boxplot
+
+# wide_prices_sorted=filter.groupby('geography')['price_diff'].mean().sort_values(ascending=False)
+(
+    ggplot(df_california, aes(x='geography', y='average_price', color='type'))
+    + geom_boxplot()
+    + labs(title='Difference of Organic vs. Conventional Avocados by California Regions')
+)
+
+```
+San Francisco has the highest difference in prices of conventional vs organic avocados. This can be shown from the pivot table created that has been sorted by highest difference in prices of organic and conventional avocados in California. Furthermore, the boxplot shows us there is larger difference compared to other cities for the types of avocados. The summary statistic helps supplement the analysis by showing that San Francisco has the largest average price difference between organic and conventional avocados which is approximately $0.72 more for organic avocados.  
+
+8. Recreate the Proportion of Average Hass Avocado Sales by Size
+```{python}
+import plotnine as p9 
+from plotnine import *
+
+#define the colors 
+#used the colordrop feature in Google Docs to find the exact hue of the bar plot
+
+(
+    ggplot(
+        df_california.melt(
+            id_vars=['geography','type'],
+            value_vars=['small','large','xlarge'],
+            var_name='size',
+            value_name='sales'
+        ),
+        aes('geography', 'sales', fill='size')
+    )
+    + geom_col(position='fill')
+    + facet_wrap('~type')
+    + scale_fill_manual(values={'xlarge':'#7570b3','large':'#1c9e78','small':'#d95f01'}) 
+    #Used google docs to colordrop the colors of the graph
+    + labs(title='Proportion of Average Hass Avocado Sales by Size',
+           x='Region of California', y='Proportion')
+    + theme(axis_text_x=element_text(angle=45, hjust=1))
+)
+
 
 ```
