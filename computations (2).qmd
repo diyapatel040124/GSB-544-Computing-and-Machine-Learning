@@ -1,8 +1,16 @@
+GitHub Link:
+<https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning>
 ---
 title: "Quarto Computations"
+author: Diya Patel
 echo: false
 fig-height: 3.5
 fig-width: 6
+format: 
+  html:
+    embed-resources: true
+    toc: true
+    code-fold: true
 ---
 
 This dataset contains a subset of the fuel economy data from the EPA.
