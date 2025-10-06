@@ -2210,7 +2210,7 @@ vertical-align: -.125em;
 
 
 <p>Import the Kaggle dataset:</p>
-<div id="7ae40c04" class="cell" data-execution_count="1">
+<div id="03af6193" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -2244,13 +2244,13 @@ vertical-align: -.125em;
 <p>Briefly describe the dataset:</p>
 <p>The dataset contains data on avocado prices and sales volume in multiple cities, states and regions of the US. Some of the relevant columns in the dataset include the date the avocados were observed, the average price of a single avocado, type, the year, the city or region of the observed avocado, total number of avocados sold and total number of avocados with PLU.</p>
 <p>Clean the dataset:</p>
-<div id="f5fd0930" class="cell" data-execution_count="2">
+<div id="1b29fd88" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_avocado.describe()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># there are no null values </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -2381,14 +2381,14 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="e8d4ab0d" class="cell" data-execution_count="3">
+<div id="34c2f137" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_avocado<span class="op">=</span>df_avocado.dropna()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_avocado <span class="op">=</span> df_avocado.rename(columns<span class="op">=</span>{<span class="st">&#39;4046&#39;</span>:<span class="st">&#39;small&#39;</span>, <span class="st">&#39;4225&#39;</span>:<span class="st">&#39;large&#39;</span>, <span class="st">&#39;4770&#39;</span>:<span class="st">&#39;xlarge&#39;</span>})</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df_avocado</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
 
@@ -2595,12 +2595,12 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="1393ba4e" class="cell" data-execution_count="4">
+<div id="370889c0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_avocado[<span class="st">&quot;geography&quot;</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>geography
 Albany                  612
 Sacramento              612
@@ -2662,7 +2662,7 @@ Name: count, dtype: int64</code></pre>
 <p>There should be 3 unique dataframes for geography. One for the national level (‘Total U.S’), one for region (‘West, etc’), and one for city</p>
 <p>Replace the states to their respective regions</p>
 <p>#Exercise 3 - which major geographical region sold the most total organic, small Hass avocados in 2017?</p>
-<div id="e11f9617" class="cell" data-execution_count="5">
+<div id="a4b64c08" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Map out the regions. List out all of the regions shown when you value_counts along with the states of California and South Carolina, they are also regions as well</span></span>
@@ -2698,7 +2698,7 @@ Name: small, dtype: float64</code></pre>
 <ol start="4" type="1">
 <li>Split the date variable into month, day, and year variables. In which month is the highest average volume of avocado sales?</li>
 </ol>
-<div id="2aaee771" class="cell" data-execution_count="6">
+<div id="110dd60f" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_avocado[<span class="st">&#39;date&#39;</span>] <span class="op">=</span> pd.to_datetime(df_avocado[<span class="st">&#39;date&#39;</span>])</span>
@@ -2713,7 +2713,7 @@ Name: small, dtype: float64</code></pre>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>group_by</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>month
 5     1.123632e+06
 2     1.095374e+06
@@ -2734,7 +2734,7 @@ Name: total_volume, dtype: float64</code></pre>
 <ol start="5" type="1">
 <li>Which metro area geographical regions sold the most total avocados? Plot side-by-side box-plots of the total volume for only the five metro geographical regions with the highest averages for the total_volume variable.</li>
 </ol>
-<div id="ee7597e1" class="cell" data-execution_count="7">
+<div id="66e0ab1c" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Map out the regions. List out all of the cities shown when you value_counts </span></span>
@@ -2802,7 +2802,7 @@ Name: total_volume, dtype: float64</code></pre>
 </div>
 </div>
 <p>South Central metro area sold the most total avocados.</p>
-<div id="ad306f9d" class="cell" data-execution_count="8">
+<div id="bb886b0d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9</span>
@@ -2831,7 +2831,7 @@ Name: total_volume, dtype: float64</code></pre>
 <ol start="6" type="1">
 <li>From the cleaned dataset, create a dataset with only California regions.</li>
 </ol>
-<div id="49a197a3" class="cell" data-execution_count="9">
+<div id="77839afc" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>california_region <span class="op">=</span> [<span class="st">&#39;Sacramento&#39;</span>, <span class="st">&#39;Los Angeles&#39;</span>, <span class="st">&#39;San Diego&#39;</span>, <span class="st">&#39;San Francisco&#39;</span>]</span>
@@ -2845,7 +2845,7 @@ Name: total_volume, dtype: float64</code></pre>
 <ol start="7" type="1">
 <li>In which California regions is the price of organic versus conventional avocados most different?</li>
 </ol>
-<div id="3d3c8010" class="cell" data-execution_count="10">
+<div id="9f5b0c00" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wide_prices <span class="op">=</span> df_california.pivot_table(index<span class="op">=</span><span class="st">&quot;geography&quot;</span>, columns<span class="op">=</span><span class="st">&#39;type&#39;</span>, values<span class="op">=</span><span class="st">&#39;average_price&#39;</span>, aggfunc<span class="op">=</span><span class="st">&#39;mean&#39;</span>)</span>
@@ -2860,7 +2860,7 @@ Name: total_volume, dtype: float64</code></pre>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>wide_prices_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 
 
@@ -2911,13 +2911,13 @@ Name: total_volume, dtype: float64</code></pre>
 </div>
 </div>
 <p>Summary Statistic</p>
-<div id="d06123c7" class="cell" data-execution_count="11">
+<div id="087d3881" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>statistics <span class="op">=</span> df_california.groupby([<span class="st">&#39;geography&#39;</span>, <span class="st">&#39;type&#39;</span>])[<span class="st">&#39;average_price&#39;</span>].describe()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>statistics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <div>
 
 
@@ -3048,7 +3048,7 @@ Name: total_volume, dtype: float64</code></pre>
 </div>
 </div>
 <p>Plot</p>
-<div id="5650bd9c" class="cell" data-execution_count="12">
+<div id="12044204" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9</span>
@@ -3073,7 +3073,7 @@ Name: total_volume, dtype: float64</code></pre>
 <ol start="8" type="1">
 <li>Recreate the Proportion of Average Hass Avocado Sales by Size</li>
 </ol>
-<div id="443d651c" class="cell" data-execution_count="13">
+<div id="8d38555e" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9 </span>
