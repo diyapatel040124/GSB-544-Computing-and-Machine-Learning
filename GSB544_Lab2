@@ -1,0 +1,150 @@
+---
+title: "Lab 2: Avocado Sales"
+author: 'Diya Patel'
+format: 
+    html:
+        toc: true 
+        code-fold: true 
+        embed-resources: true 
+echo: true 
+---
+
+Import the Kaggle dataset:
+```{python}
+import pandas as pd
+import numpy as np
+df_avocado = pd.read_csv("/Users/diyapatel/Downloads/avocado-updated-2020.csv")
+print(df.head())
+```
+
+Briefly describe the dataset:
+
+The dataset contains data on avocado prices and sales volume in multiple cities, states and regions of the US. Some of the relevant columns in the dataset include the date the avocados were observed, the average price of a single avocado, type, the year, the city or region of the observed avocado, total number of avocados sold and total number of avocados with PLU. 
+
+Clean the dataset:
+```{python}
+df_avocado.describe()
+# there are no null values 
+```
+
+```{python}
+df_avocado=df_avocado.dropna()
+df_avocado = df_avocado.rename(columns={'4046':'small', '4225':'medium', '4770':'large'})
+df_avocado
+```
+
+```{python}
+df_avocado['geography'].unique()[:20]
+df_avocado['geography'].describe()
+```
+```{python}
+df_avocado["geography"].value_counts()
+```
+There should be 3 unique dataframes for geography. One for the national level ('Total U.S'), one for region ('West, etc'), and one for city
+
+Replace the states to their respective regions
+```{python}
+state_to_region = {
+    "California": "West", 
+    "South Carolina": "Southeast",
+}
+```
+```{python}
+national = ['Total U.S.']
+regions = ['West', 'Northeast', 'Southeast', 'Northern New England', 'Plains', 
+'South Central', 'Midsouth', 'Great Lakes']
+
+cities
+```
+
+#Exercise 3 - which major geographical region sold the most total organic, small Hass avocados in 2017?
+
+```{python}
+#Map out the regions. List out all of the regions shown when you value_counts along with the states of California and South Carolina, they are also regions as well
+df_avocado['small']=pd.to_numeric(df_avocado['small'], errors='coerce')
+regions = ['Northeast', 'Northern New England', 'Plains', 'Southeast', 'West', 'Midsouth', 'Great Lakes', 'California', 'South Carolina', 'West Tex/New Mexico']
+filter = df_avocado[
+    (df["geography"].isin(regions)) & 
+    (df["type"] == "organic") & 
+    (df["year"] == 2017)
+]
+
+group_by=filter.groupby('geography')['small'].sum().sort_values(ascending=False)
+
+print(group_by.sort_values(ascending=False))
+
+```
+The major geographical region that sold the most total organic, small Hass avocados in 2017 was in the West region. Since California is also apart of the west, it's value would be added to that of the west. 
+
+4. Split the date variable into month, day, and year variables. In which month is the highest average volume of avocado sales?
+```{python}
+df_avocado['date'] = pd.to_datetime(df_avocado['date'])
+
+df_avocado['year'] = df_avocado['date'].dt.year
+df_avocado['month'] = df_avocado['date'].dt.month
+df_avocado['day'] = df_avocado['date'].dt.day
+
+df_avocado
+
+group_by=(df_avocado.groupby('month')['total_volume'].mean().sort_values(ascending=False))
+
+group_by
+```
+May has the highest average volume of avocado sales 
+
+5. Which metro area geographical regions sold the most total avocados? Plot side-by-side box-plots of the total volume for only the five metro geographical regions with the highest averages for the total_volume variable. 
+```{python}
+#Map out the regions. List out all of the cities shown when you value_counts 
+
+df_avocado['total_volume']=pd.to_numeric(df_avocado['total_volume'], errors='coerce')
+metro_regions = ['Albany', 'Sacramento', 'Orlando', 'Philadelphia', 'Phoenix/Tucson', 'Pittsburgh', 'Portland', 
+'Raleigh/Greensboro', 'Richmond/Norfolk', 'Roanoke', 'San Diego', 'Atlanta', 'San Francisco', 'Seattle', 'South Central',
+'Spokane', 'St. Louis', 'Syracuse', 'Tampa', 'New York', 'New Orleans/Mobile', 'Nashville', 'Baltimore/Washington', 'Boise', 
+'Boston', 'Buffalo/Rochester', 'Charlotte', 'Chicago', 'Cincinnati/Dayton', 'Columbus', 'Dallas/Ft. Worth', 'Denver', 
+'Detroit', 'Grand Rapids', 'Harrisburg/Scranton', 'Hartford/Springfield', 'Houston', 'Indianapolis', 'Jacksonville', 'Las Vegas', 'Los Angeles', 
+'Louisville', 'Miami/Ft. Lauderdale']
+
+filter = df_avocado[
+    (df["geography"].isin(metro_regions))]
+
+group_by=filter.groupby('geography')['total_volume'].sum().sort_values(ascending=False)
+
+print(group_by.sort_values(ascending=False))
+
+```
+South Central metro area sold the most total avocados.
+
+```{python}
+import plotnine as p9
+from plotnine import ggplot, aes, labs, geom_boxplot
+
+city_avgs=filter.groupby('geography')['total_volume'].mean().sort_values(ascending=False)
+
+top_5 = city_avgs.head(5).index
+
+df_top_5 = filter[filter["geography"].isin(top_5)]
+
+(
+    ggplot(df_top_5, aes(x='geography', y='total_volume'))
+    + geom_boxplot()
+    + labs(title='Top 5 Metro Cities by Average Total Volume')
+)
+
+
+```
+
+6. From the cleaned dataset, create a dataset with only California regions.
+```{python}
+california_region = ['Sacramento', 'Los Angeles', 'San Diego', 'San Francisco']
+
+df_california = df_avocado[df_avocado['geography'].isin(california_region)]
+
+california_mask = df_avocado['geography'].isin(california_region)
+df_california = df_avocado[california_mask]
+
+```
+
+7. In which California regions is the price of organic versus conventional avocados most different? 
+```{python}
+
+```
