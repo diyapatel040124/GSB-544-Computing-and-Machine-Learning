@@ -2207,15 +2207,16 @@ vertical-align: -.125em;
 </header>
 
 
+<p>https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning</p>
 <p>Load the dataset</p>
-<div id="68038459" class="cell" data-execution_count="1">
+<div id="64872582" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>xmas <span class="op">=</span> pd.read_csv(<span class="st">&quot;xmas.csv&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>xmas.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -2284,7 +2285,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>Function 1: pluralize_gift()</p>
-<div id="4bc4308b" class="cell" data-execution_count="2">
+<div id="6a74f4bd" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pluralize_gift(gift):</span>
@@ -2313,7 +2314,7 @@ vertical-align: -.125em;
 </details>
 </div>
 <p>Test the Function</p>
-<div id="cefc7172" class="cell" data-execution_count="3">
+<div id="379975aa" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Does the replacement of &#39;oo&#39; give &#39;ee&#39;?</span></span>
@@ -2324,7 +2325,7 @@ vertical-align: -.125em;
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>xmas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -2469,7 +2470,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>clean the dataset drop na’s remove whitespace convert float to string</p>
-<div id="95a3ed57" class="cell" data-execution_count="4">
+<div id="50f4bda3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_xmas(text):</span>
@@ -2487,7 +2488,7 @@ vertical-align: -.125em;
 </details>
 </div>
 <p>Function 2: make_phrase Write a function called make_phrase() that takes as input the necessary information, and returns a phrase</p>
-<div id="458d16bf" class="cell" data-execution_count="5">
+<div id="25a1856e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_phrase(num, num_word, item, verb, adjective, location):</span>
@@ -2578,7 +2579,7 @@ vertical-align: -.125em;
 </details>
 </div>
 <p>Test the Function</p>
-<div id="22729ca0" class="cell" data-execution_count="6">
+<div id="68142a02" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Test the function by putting everything together</span></span>
@@ -2590,12 +2591,12 @@ vertical-align: -.125em;
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>adjective <span class="op">=</span> <span class="st">&#39;&#39;</span>,</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> <span class="st">&#39;in a pear tree&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>&#39;a partridge in a pear tree.&#39;</code></pre>
 </div>
 </div>
 <p>Function to return the column in the data that contains the phrases for each day</p>
-<div id="2ac9e9d8" class="cell" data-execution_count="7">
+<div id="a3e2aaa0" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xmas[<span class="st">&quot;Phrase&quot;</span>] <span class="op">=</span> xmas.<span class="bu">apply</span>(</span>
@@ -2611,7 +2612,7 @@ vertical-align: -.125em;
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>xmas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -2769,7 +2770,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>Function 3</p>
-<div id="63b28e88" class="cell" data-execution_count="8">
+<div id="655e2886" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sing_day(dataset, num, phrase_col):</span>
@@ -2826,7 +2827,7 @@ vertical-align: -.125em;
 <span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> intro <span class="op">+</span> gifts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="fee3db93" class="cell" data-execution_count="9">
+<div id="3499127e" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sing_day(xmas, <span class="dv">3</span>, <span class="st">&quot;Phrase&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2839,7 +2840,7 @@ and a partridge in a pear tree.</code></pre>
 </div>
 </div>
 <p>Use the functions Run appropriate code to output the lyrics for the entire 12 Days of Christmas song</p>
-<div id="01289205" class="cell" data-execution_count="10">
+<div id="4525434d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a helper function to append each of the 12 days and join all of the verses with a blank line between each of the days </span></span>
@@ -2851,7 +2852,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>.join(verses)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="a9a7cea9" class="cell" data-execution_count="11">
+<div id="858ae074" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sing_all_days(xmas, <span class="st">&quot;Phrase&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2961,13 +2962,13 @@ and a partridge in a pear tree.</code></pre>
 </div>
 </div>
 <p>Load xmas2 and run the code again to get a surprise song</p>
-<div id="4d7cf9e2" class="cell" data-execution_count="12">
+<div id="9f896b26" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>xmas2 <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://www.dropbox.com/scl/fi/p9x9k8xwuzs9rhp582vfy/xmas_2.csv?rlkey=kvc3j3lmyn4opcidsrhcmrof1&amp;dl=1&quot;</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>xmas2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <div>
 
 
@@ -3098,7 +3099,7 @@ and a partridge in a pear tree.</code></pre>
 </div>
 </div>
 </div>
-<div id="edcfee69" class="cell" data-execution_count="13">
+<div id="66b77b74" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pluralize_gift(gift):</span>
@@ -3126,7 +3127,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> gift</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="565e1ceb" class="cell" data-execution_count="14">
+<div id="0d8b523a" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Does the replacement of &#39;oo&#39; give &#39;ee&#39;?</span></span>
@@ -3137,7 +3138,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>xmas2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
 
@@ -3282,7 +3283,7 @@ and a partridge in a pear tree.</code></pre>
 </div>
 </div>
 <p>clean the dataset drop na’s remove whitespace convert float to string</p>
-<div id="87451b41" class="cell" data-execution_count="15">
+<div id="6acf5ae5" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_xmas2(text):</span>
@@ -3297,7 +3298,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="7bcd8fae" class="cell" data-execution_count="16">
+<div id="87f503cd" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_phrase(num, num_word, item, verb, adjective, location):</span>
@@ -3383,7 +3384,7 @@ and a partridge in a pear tree.</code></pre>
 </details>
 </div>
 <p>Test the function</p>
-<div id="fa9b532e" class="cell" data-execution_count="17">
+<div id="9e28a3b2" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>make_phrase(</span>
@@ -3394,11 +3395,11 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>adjective <span class="op">=</span> <span class="st">&#39;&#39;</span>,</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> <span class="st">&#39;from Cal Poly&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>&#39;an email from Cal Poly.&#39;</code></pre>
 </div>
 </div>
-<div id="d08805da" class="cell" data-execution_count="18">
+<div id="8fa661ae" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>xmas2[<span class="st">&quot;Phrase&quot;</span>] <span class="op">=</span> xmas2.<span class="bu">apply</span>(</span>
@@ -3414,7 +3415,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>xmas2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <div>
 
 
@@ -3572,7 +3573,7 @@ and a partridge in a pear tree.</code></pre>
 </div>
 </div>
 <p>Function 3</p>
-<div id="802c90ad" class="cell" data-execution_count="19">
+<div id="06925f18" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sing_day(dataset, num, phrase_col):</span>
@@ -3627,7 +3628,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> intro <span class="op">+</span> gifts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b2c201d3" class="cell" data-execution_count="20">
+<div id="d7b5ec6c" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sing_all_days(dataset, phrase_col<span class="op">=</span><span class="st">&quot;Phrase&quot;</span>, days <span class="op">=</span> <span class="dv">12</span>):</span>
@@ -3638,7 +3639,7 @@ and a partridge in a pear tree.</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>.join(verses)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="283afb9a" class="cell" data-execution_count="21">
+<div id="3ec90797" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sing_all_days(xmas2, <span class="st">&quot;Phrase&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
