@@ -1,0 +1,508 @@
+---
+title: "Lab 3: The 12 Days of Christmas"
+author: 'Diya Patel'
+format: 
+    html:
+        embed-resources: true
+        code-fold: true
+echo: true
+---
+
+Load the dataset
+```{python}
+import pandas as pd
+xmas = pd.read_csv("xmas.csv")
+xmas.head()
+```
+
+Function 1: pluralize_gift()
+```{python}
+def pluralize_gift(gift):
+  """
+  Returns plural of a noun
+  
+  Parameters
+  ----------
+  gift: str
+    A noun
+    
+  Return
+  ------
+  str
+    Plural version
+  """
+#Make sure the pluralization works for irregular words like goose and lady
+  if 'oo' in gift:
+    gift = gift.replace('oo','ee')
+  elif 'y' in gift:
+    gift = gift.replace('y', 'ies')
+  else:
+    gift = gift + 's'
+
+  return gift
+
+```
+
+Test the Function
+```{python}
+#Does the replacement of 'oo' give 'ee'?
+pluralize_gift("goose")
+
+#Test to see if the function is vectorized
+xmas['pluralizes'] = xmas['Gift.Item'].apply(pluralize_gift)
+
+xmas
+```
+
+clean the dataset
+drop na's
+remove whitespace
+convert float to string
+```{python}
+def clean_xmas(text):
+    #Drop the NAs: if the value is actually None, treat it as missing and return an empty string
+    if text is None:
+        return ""
+    if isinstance(text, float) and pd.isna(text):
+        return ""
+    #Convert whatever text is to a string, then remove places where there are whitespaces 
+    string = str(text).strip()
+    if string.upper()=="NA":
+        return ""
+    #If the string equals "NA" in any casing, treat is as missing and return an empty string
+    return string
+```
+
+Function 2: make_phrase
+Write a function called make_phrase() that takes as input the necessary information, and returns a phrase 
+```{python}
+def make_phrase(num, num_word, item, verb, adjective, location):
+  """
+  Returns phrase of a num_word, item, verb, adjective and location 
+
+  Parameters
+  -----------
+  num: int
+    A number 
+  num_words: str
+    A number written as a word
+  item: str
+    A gift  
+  verb: str
+    Action word 
+  adjective: str
+    Describing word
+  location: str
+    A place
+  
+  Return
+  --------
+  Completed phrase
+  
+  """
+  
+  ## Step 1: Replace NAs with blank strings
+  verb = clean_xmas(verb)
+  adjective = clean_xmas(adjective)
+  location = clean_xmas(location)
+
+  
+  ## Step 2: If the day number is larger than 1, the gift items need pluralized!
+  if num > 1:
+    item = pluralize_gift(item)
+
+#Check the first letter of the gift
+#Return an empty string if the gift item is empty --- this part I had to look to have the rest of my code run properly
+  ## Step 3: Figure out if a gift item starts with a vowel
+
+  item_letter = (item[:1].lower() if item else "")
+  item_vowel = item_letter in ['a', 'e', 'i', 'o', 'u']
+
+# Create a mapping dictionary to convert the day.in.words to singular words so the phrase prints out properly
+  map_words = {
+    'second': 'two',
+    'third': 'three',
+    'fourth': 'four',
+    'fifth': 'five',
+    'sixth': 'six',
+    'seventh': 'seven',
+    'eighth': 'eight', 
+    'ninth': 'nine', 
+    'tenth': 'ten', 
+    'eleventh': 'eleven', 
+    'twelfth': 'twelve'
+  }
+ ## Step 4: For the first day, if the gift item starts with a vowel, replace the day with "an" and if the gift item does not start with a vowel, replace the day with "a" (e.g. a partridge in a pear tree). If it is not the first day, use just the number word (e.g. ten lords a leap)
+
+#If the item word is a vowel, use "an" before the word and then 'a' if the start of the word doesn't start with a vowel
+  if num == 1:
+    word = 'an' if item_vowel else 'a'
+  else: #--------------------------------- if days is greater than 1 turn None to an empty string "". .strip() will remove leading/trailing spaces, and .lower() will make it lowercase so it matches the items in the dictionary
+    w = (num_word or "").strip().lower()
+    word = map_words.get(w, w if w else str(num))  
+  #map_words.get looks up a w (second, third) in the map, and if it is found it will return the mapped values
+  #I needed help on this part and had to look this up on stack overflow
+ 
+    
+## Step 5: Put all of the pieces together into one string and return!
+#Create a list with the number word and append each part of the phrase only if its non-empty in the order that follows:
+#Join all kept pieces with single spaces and get rid of whitespace
+  parts = [word]
+  if adjective:
+    parts.append(adjective)   
+  if item:
+    parts.append(item)        
+  if verb:
+    parts.append(verb)        
+  if location:
+    parts.append(location)
+#For day 1 only, ensure the line ends with a period for grammer purposes
+  phrase = " ".join(parts).strip()
+  if num == 1 and not phrase.endswith("."):
+    phrase += "."
+  return phrase
+
+```
+
+Test the Function 
+```{python}
+#Test the function by putting everything together
+make_phrase(
+num = 1, 
+num_word = 'one',
+item = 'partridge',
+verb = '',
+adjective = '',
+location = 'in a pear tree')
+```
+
+Function to return the column in the data that contains the phrases for each day 
+```{python}
+xmas["Phrase"] = xmas.apply(
+    lambda row: make_phrase(
+        num = row['Day'],
+        num_word = row['Day.in.Words'],
+        item = row['Gift.Item'],
+        verb = row['Verb'],
+        adjective = row['Adjective'],
+        location = row['Location']
+    ), 
+    axis = 1)
+
+xmas
+
+```
+
+Function 3
+```{python}
+def sing_day(dataset, num, phrase_col):
+  """
+  Returns the song from the verse
+  Parameters
+  -----------
+  dataset: dataset
+    A dataset
+  num: int
+    A day
+  phrase_col: column 
+    A column with the phrases
+ 
+  Return
+  ------
+  str
+    Song version
+  """
+  #create a dictionary for the 12 days of christmas so the num_words are correct
+  days = {
+    1: 'first',
+    2: 'second', 
+    3: 'third', 
+    4: 'fourth',
+    5: 'fifth',
+    6: 'sixth',
+    7: 'seventh',
+    8: 'eighth',
+    9: 'ninth',
+    10: 'tenth',
+    11: 'eleventh',
+    12: 'twelfth'
+  }
+
+  # Step 1: Setup the intro line
+  num_word = days[num]  # convert "1" to "first" etc.
+  intro = "On the " + num_word + " day of Christmas, my true love sent to me:"
+  
+  # Step 2: Sing the gift phrases
+  # Hint: What order are they gifts sung in each day?
+  gifts = ""
+  for i in range(num, 0, -1):
+    verse = str(dataset.loc[i - 1, phrase_col]).strip()
+    if i == 1 and num > 1 and not verse.lower().startswith("and "):
+        verse = "and " + str(verse).lstrip()
+    if i > 1:
+        verse = verse.rstrip(".") + ","
+    gifts += "\n" + verse
+  
+  #replace the remaining newlines with a comma 
+  gifts = "\n" + gifts.lstrip("\n")
+  # Step 3: Put it all together and return
+  return intro + gifts
+```
+
+```{python}
+print(sing_day(xmas, 3, "Phrase"))
+```
+
+Use the functions
+Run appropriate code to output the lyrics for the entire 12 Days of Christmas song
+```{python}
+#Use a helper function to append each of the 12 days and join all of the verses with a blank line between each of the days 
+def sing_all_days(dataset, phrase_col="Phrase", days = 12):
+    n = min(days, len(dataset))
+    verses = []
+    for d in range (1, n+1):
+        verses.append(sing_day(dataset, d, phrase_col))
+    return "\n\n".join(verses)
+
+```
+
+```{python}
+print(sing_all_days(xmas, "Phrase"))
+
+```
+
+Load xmas2 and run the code again to get a surprise song
+```{python}
+xmas2 = pd.read_csv("https://www.dropbox.com/scl/fi/p9x9k8xwuzs9rhp582vfy/xmas_2.csv?rlkey=kvc3j3lmyn4opcidsrhcmrof1&dl=1")
+xmas2
+```
+
+```{python}
+def pluralize_gift(gift):
+  """
+  Returns plural of a noun
+  
+  Parameters
+  ----------
+  gift: str
+    A noun
+    
+  Return
+  ------
+  str
+    Plural version
+  """
+
+  if 'oo' in gift:
+    gift = gift.replace('oo','ee')
+  elif 'y' in gift:
+    gift = gift.replace('y', 'ies')
+  else:
+    gift = gift + 's'
+
+  return gift
+```
+
+```{python}
+#Does the replacement of 'oo' give 'ee'?
+pluralize_gift("party")
+
+#Test to see if the function is vectorized
+xmas2['pluralizes'] = xmas2['Gift.Item'].apply(pluralize_gift)
+
+xmas2
+```
+
+clean the dataset
+drop na's
+remove whitespace
+convert float to string
+```{python}
+def clean_xmas2(text):
+    #Drop the NAs
+    if text is None:
+        return ""
+    if isinstance(text, float) and pd.isna(text):
+        return ""
+    string = str(text).strip()
+    if string.upper()=="NA":
+        return ""
+    return string
+```
+
+```{python}
+def make_phrase(num, num_word, item, verb, adjective, location):
+  """
+  Returns phrase of a num_word, item, verb, adjective and location 
+
+  Parameters
+  -----------
+  num: int
+    A number 
+  num_words: str
+    A number written as a word
+  item: str
+    A gift  
+  verb: str
+    Action word 
+  adjective: str
+    Describing word
+  location: str
+    A place
+  
+  Return
+  --------
+  Completed phrase
+  
+  """
+  
+  ## Step 1: Replace NAs with blank strings
+  verb = clean_xmas2(verb)
+  adjective = clean_xmas2(adjective)
+  location = clean_xmas2(location)
+
+  
+  ## Step 2: If the day number is larger than 1, the gift items need pluralized!
+  if num > 1:
+    item = pluralize_gift(item)
+ ## Step 3: Figure out if a gift item starts with a vowel
+
+  item_letter = (item[:1].lower() if item else "")
+  item_vowel = item_letter in ['a', 'e', 'i', 'o', 'u']
+
+  map_words = {
+    'second': 'two',
+    'third': 'three',
+    'fourth': 'four',
+    'fifth': 'five',
+    'sixth': 'six',
+    'seventh': 'seven',
+    'eighth': 'eight', 
+    'ninth': 'nine', 
+    'tenth': 'ten', 
+    'eleventh': 'eleven', 
+    'twelfth': 'twelve'
+  }
+
+## Step 4: For the first day, if the gift item starts with a vowel, replace the day with "an" and if the gift item does not start with a vowel, replace the day with "a" (e.g. a partridge in a pear tree). If it is not the first day, use just the number word (e.g. ten lords a leap)
+
+  if num == 1:
+    word = 'an' if item_vowel else 'a'
+  else:
+    w = (num_word or "").strip().lower()
+    word = map_words.get(w, w if w else str(num))
+   
+    
+  ## Step 4: For the first day, if the gift item starts with a vowel, replace the day with "an" and if the gift item does not start with a vowel, replace the day with "a" (e.g. a partridge in a pear tree). If it is not the first day, use just the number word (e.g. ten lords a leap)
+
+  ## Step 5: Put all of the pieces together into one string and return!
+ # Step 5: Put all of the pieces together (verb always after noun)
+  parts = [word]
+  if adjective:
+    parts.append(adjective)   
+  if item:
+    parts.append(item)        
+  if verb:
+    parts.append(verb)        
+  if location:
+    parts.append(location)
+
+  phrase = " ".join(parts).strip()
+  if num == 1 and not phrase.endswith("."):
+    phrase += "."
+  return phrase
+```
+
+Test the function
+```{python}
+make_phrase(
+num = 1, 
+num_word = 'one',
+item = 'email',
+verb = '',
+adjective = '',
+location = 'from Cal Poly')
+```
+
+```{python}
+xmas2["Phrase"] = xmas2.apply(
+    lambda row: make_phrase(
+        num = row['Day'],
+        num_word = row['Day.in.Words'],
+        item = row['Gift.Item'],
+        verb = row['Verb'],
+        adjective = row['Adjective'],
+        location = row['Location']
+    ), 
+    axis = 1)
+
+xmas2
+```
+
+Function 3
+```{python}
+def sing_day(dataset, num, phrase_col):
+  """
+  Returns the song from the verse
+  Parameters
+  -----------
+  dataset: dataset
+    A dataset
+  num: int
+    A day
+  phrase_col: column 
+    A column with the phrases
+ 
+  Return
+  ------
+  str
+    Song version
+  """
+  #create a dictionary for the 12 days of christmas so the num_words are correct
+  days = {
+    1: 'first',
+    2: 'second', 
+    3: 'third', 
+    4: 'fourth',
+    5: 'fifth',
+    6: 'sixth',
+    7: 'seventh',
+    8: 'eighth',
+    9: 'ninth',
+    10: 'tenth',
+    11: 'eleventh',
+    12: 'twelfth'
+  }
+
+  # Step 1: Setup the intro line
+  num_word = days[num]  # convert "1" to "first" etc.
+  intro = "On the " + num_word + " day of Christmas, my true love sent to me:"
+  
+  # Step 2: Sing the gift phrases
+  # Hint: What order are they gifts sung in each day?
+  gifts = ""
+  for i in range(num, 0, -1):
+    verse = str(dataset.loc[i - 1, phrase_col]).strip()
+    if i == 1 and num > 1 and not verse.lower().startswith("and "):
+        verse = "and " + str(verse).lstrip()
+    if i > 1:
+        verse = verse.rstrip(".") + ","
+    gifts += "\n" + verse
+  
+  # Step 3: Put it all together and return
+  return intro + gifts
+```
+
+```{python}
+def sing_all_days(dataset, phrase_col="Phrase", days = 12):
+    n = min(days, len(dataset))
+    verses = []
+    for d in range (1, n+1):
+        verses.append(sing_day(dataset, d, phrase_col))
+    return "\n\n".join(verses)
+```
+
+```{python}
+print(sing_all_days(xmas2, "Phrase"))
+
+```
