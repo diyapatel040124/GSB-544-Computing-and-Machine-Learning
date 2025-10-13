@@ -7,7 +7,8 @@ format:
         code-fold: true
 echo: true
 ---
-https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning
+__Github Link:__
+**https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning**
 
 Load the dataset
 ```{python}
