@@ -2209,7 +2209,8 @@ vertical-align: -.125em;
 </header>
 
 
-<div id="6d661779" class="cell" data-execution_count="1">
+<p>GitHub Link: <a href="https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab%204.html" class="uri">https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab%204.html</a></p>
+<div id="438618e5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install beautifulsoup4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2219,7 +2220,7 @@ vertical-align: -.125em;
 Requirement already satisfied: soupsieve&gt;1.2 in /opt/anaconda3/lib/python3.13/site-packages (from beautifulsoup4) (2.5)</code></pre>
 </div>
 </div>
-<div id="b5270691" class="cell" data-execution_count="2">
+<div id="12924fcc" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -2230,7 +2231,7 @@ Requirement already satisfied: soupsieve&gt;1.2 in /opt/anaconda3/lib/python3.13
 </details>
 </div>
 <p>Read in the HTML from the URL using the requests library</p>
-<div id="cfd8217b" class="cell" data-execution_count="3">
+<div id="7033f41c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://tastesbetterfromscratch.com/meal-plan-192/&quot;</span></span>
@@ -2239,14 +2240,14 @@ Requirement already satisfied: soupsieve&gt;1.2 in /opt/anaconda3/lib/python3.13
 </details>
 </div>
 <p>Use Beautiful Soup to parse this string into a tree called soup</p>
-<div id="19950de9" class="cell" data-execution_count="4">
+<div id="198caf9d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>soup<span class="op">=</span>BeautifulSoup(response.content, <span class="st">&#39;html.parser&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>To find an HTML tag corresponding to a specific element on a webpage, right-click on it and choose, “inspect”. Go to the meal prep days to do this.</p>
-<div id="4202cd4b" class="cell" data-execution_count="5">
+<div id="acd5a5e8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find all p tags (&lt;p&gt;) that have the class &quot;has-text-align-left&quot;</span></span>
@@ -2361,7 +2362,7 @@ This function loops through the paragraphs that contain a
 <ol start="2" type="1">
 <li>Data from and API Using the Tasty API from the practice activity, search for recipes that match the “Monday” recipe in your meal plan. Compile a table of all these recipes</li>
 </ol>
-<div id="5db57708" class="cell" data-execution_count="6">
+<div id="7df143d3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># after scraping the dataframe, get the Monday recipe names (pork carnitas recipes)</span></span>
@@ -2417,7 +2418,7 @@ Name: name, dtype: object</code></pre>
 <li>Automate it Write a function called get_mealplan_data that performs 2 and 3 above automatically.</li>
 </ol>
 <p>Scrape one weekly meal plan</p>
-<div id="56d6daf0" class="cell" data-execution_count="7">
+<div id="0b594399" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_weekly_plan(plan_number):</span>
@@ -2452,7 +2453,7 @@ Name: name, dtype: object</code></pre>
 </details>
 </div>
 <p>Get up to 100 matches for a recipe name</p>
-<div id="f8789e41" class="cell" data-execution_count="8">
+<div id="05b0a959" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> match_recipe(recipe_name, limit<span class="op">=</span><span class="dv">100</span>):</span>
@@ -2486,7 +2487,7 @@ Name: name, dtype: object</code></pre>
 </details>
 </div>
 <p>Put two helper functions together to get one meal plan number</p>
-<div id="4f792aa4" class="cell" data-execution_count="9">
+<div id="feb9e5ca" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
@@ -2533,14 +2534,14 @@ Name: name, dtype: object</code></pre>
 <span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="d9fb123d" class="cell" data-execution_count="10">
+<div id="a9d5008d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> get_mealplan_data(<span class="dv">202</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/wk/2c1dxvcd3bzdddslqmjhrdnw0000gn/T/ipykernel_72548/1008025457.py:36: FutureWarning:
+<pre><code>/var/folders/wk/2c1dxvcd3bzdddslqmjhrdnw0000gn/T/ipykernel_72968/1008025457.py:36: FutureWarning:
 
 The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
 </code></pre>
@@ -2696,7 +2697,7 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <ol start="4" type="1">
 <li>Add a column with fuzzy matching Add a column to your df dataset indicating whether the recipe in that row is vegetarian or not</li>
 </ol>
-<div id="a682228e" class="cell" data-execution_count="11">
+<div id="d6ec5ddf" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
@@ -2721,7 +2722,7 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Vegetarian&quot;</span>] <span class="op">=</span> <span class="op">~</span>df[name_column].fillna(<span class="st">&quot;&quot;</span>).<span class="bu">str</span>.contains(pattern) <span class="co"># return True if name column does not contain meat words (~)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6b66b9f3" class="cell" data-execution_count="12">
+<div id="9388d0fd" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2890,7 +2891,7 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 <li>Analyze Make a visualization that tells a story about nutrition information (available in the Tasty API results) across the week for Mealplan 202.</li>
 </ol>
 <p>Bar chart of Nutritional Calories by Day of the Week for Mealplan 202.</p>
-<div id="b1d1d809" class="cell" data-execution_count="13">
+<div id="d1e1e270" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the Tasty Recipe column name and get one match for each day of the week</span></span>
@@ -2918,7 +2919,7 @@ The behavior of DataFrame concatenation with empty or all-NA entries is deprecat
 </details>
 </div>
 <p>Plot the graph</p>
-<div id="188bc618" class="cell" data-execution_count="14">
+<div id="a0fc9985" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
