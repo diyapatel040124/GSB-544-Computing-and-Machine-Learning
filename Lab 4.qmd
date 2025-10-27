@@ -1,0 +1,324 @@
+---
+title: "Lab 4: Data is Delicious"
+author: Diya Patel
+format: 
+    html:
+        toc: true
+        code-fold: true
+        embed-resources: true
+echo: true
+---
+
+```{python}
+!pip install beautifulsoup4
+```
+
+```{python}
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+import re 
+```
+
+Read in the HTML from the URL using the requests library
+```{python}
+url = "https://tastesbetterfromscratch.com/meal-plan-192/"
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64;x64)"}
+response = requests.get(url, headers=HEADERS)
+```
+Use Beautiful Soup to parse this string into a tree called soup 
+```{python}
+soup=BeautifulSoup(response.content, 'html.parser')
+```
+To find an HTML tag corresponding to a specific element on a webpage, right-click on it and choose, "inspect". Go to the meal prep days to do this.
+```{python}
+# find all p tags (<p>) that have the class "has-text-align-left"
+rows = soup.find_all("p", class_="has-text-align-left")
+
+# create an empty list for for table columns
+days = []
+names = []
+links = []
+prices = []
+
+# created a for loop to go through each paragraph with the p tags
+for p in rows: 
+    day_tag = p.find("strong") # the tag that holds the day of the week
+    link_tag = p.find("a") # the tag that holds the recipe link 
+
+    #Only day and recipe rows 
+    if not (day_tag and link_tag):
+        continue
+
+    # get the text of the day and remove the colon
+    day = day_tag.get_text(strip=True).rstrip(":")
+    # recipe name is stored in the link tag
+    name = link_tag.get_text(strip=True)
+    # get the link URL from the href attribute 
+    link = link_tag.get("href", "")
+
+
+    #Find only the part of the price with the dollar sign (i had to ask ai for some help on how to extract the pricing)
+    price = None
+    for chunk in p.stripped_strings:
+        # if a chunk has the "$" sign, extract the numbers after it 
+        if "$" in chunk:
+            after_dollar = chunk.split("$", 1)[1].strip()
+            # only want digits included with the decimal point for the price 
+            price = "".join(ch for ch in after_dollar if (ch.isdigit() or ch == "."))
+            break
+    # add each piece of data to its list 
+    days.append(day)
+    names.append(name)
+    links.append(link)
+    prices.append(price)
+
+# create a dataframe to get our column headers and info in each
+df = pd.DataFrame({
+    "Day of the Week": days, 
+    "Name of Recipe": names, 
+    "Link to Recipe": links, 
+    "Price of Recipe": prices
+})
+df
+```
+This function loops through the paragraphs that contain a <p> tag on the meal plan webpage to find each Day of the Week, Name of Recipe, Link to recipe, and price of recipe. 
+
+2. Data from and API
+Using the Tasty API from the practice activity, search for recipes that match the "Monday" recipe in your meal plan. Compile a table of all these recipes 
+```{python}
+# after scraping the dataframe, get the Monday recipe names (pork carnitas recipes)
+monday_recipe = df.loc[df["Day of the Week"].str.lower() == "monday", "Name of Recipe"].iloc[0]
+
+# lowercase, and remove extra spaces so it can be used as a search term
+search_term = monday_recipe.strip().lower()
+
+# URL for the tasty api taken from PA 4.1
+url = "https://tasty.p.rapidapi.com/recipes/list"
+
+querystring = {"from":"0","size":"20","q":"q"}
+
+headers = {
+    "X-RapidAPI-Key": "c003bcc51amshee6d26f4156657ap163fdajsn574bc5976f00",
+    "X-RapidAPI-Host": "tasty.p.rapidapi.com"
+}
+
+#only collect 100 results 
+# make an empty list to collect monday recipes 
+all_results = []
+
+# loop in increments of 20 to get up to 100 results total. (had to ask ai for help since Positron crashed with the exceeding amount of data)
+for start in range(0,100,20):
+    # update the query each time with a new starting index and recipe
+    querystring = {"from":str(start),"size":"20","q":search_term}
+    response = requests.get(url, headers=headers, params=querystring)
+    data = response.json()
+    # get the list of recipes inside the "results" key 
+    results = data.get("results", []) # if there are no results, end the loop 
+    if not results:
+        break
+    all_results.extend(results) # add the recipes to a series 
+
+pork_carnitas_recipes = pd.json_normalize(all_results)
+pork_carnitas_recipes["name"]
+```
+
+3. Automate it 
+Write a function called get_mealplan_data that performs 2 and 3 above automatically.
+
+Scrape one weekly meal plan
+```{python}
+def get_weekly_plan(plan_number):
+    # Build the meal plan URL using the plan number (202)
+    url = f"https://tastesbetterfromscratch.com/meal-plan-{plan_number}/"
+    html = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}).text
+    soup = BeautifulSoup(html, "html.parser")
+
+    # create an empty list to collect one dictionary per day and recipe row 
+    rows = []
+    
+    # Pulled from part one 
+    for p in soup.select("p.has-text-align-left"):
+        day_tag = p.find("strong")
+        a_tag = p.find("a")
+        if not (day_tag and a_tag):
+            continue
+        day = day_tag.get_text(strip=True).rstrip(":")
+        name = a_tag.get_text(strip=True)
+        link = urljoin(url, a_tag.get("href", ""))
+
+        #Use regex to pull the price from the paragraph's text
+        m = re.search(r"\$([\d.]+)", " ".join(p.stripped_strings))
+        price = m.group(1) if m else None
+
+        # save the data all in one row 
+        rows.append({"Day": day, 
+                    "Name": name, 
+                    "Link":link, 
+                    "Price":price})
+    return pd.DataFrame(rows)
+
+```
+
+Get up to 100 matches for a recipe name
+```{python}
+def match_recipe(recipe_name, limit=100):
+    # create a search term to keep letter/numbers/spaces all lowercases 
+    q = re.sub(r"[^A-Za-z0-9 ]+", " ", str(recipe_name)).strip().lower()
+    # return an empty table if the query is empty
+    if not q:
+        return pd.DataFrame()
+
+    # pulled from part 2 
+    url = "https://tasty.p.rapidapi.com/recipes/list"
+    headers = {"X-RapidAPI-Key":'c003bcc51amshee6d26f4156657ap163fdajsn574bc5976f00' , "X-RapidAPI-Host": "tasty.p.rapidapi.com"}
+
+    results = []
+    for start in range(0, limit, 20):
+        r = requests.get(url, headers=headers, params={"from": str(start), "size":"20", "q":q})
+        batch = r.json().get("results", []) or []
+        if not batch:
+            break
+        results.extend(batch)
+        if len(batch) <20:
+            break
+
+    if not results: # return the empty dataframe if there is nothing 
+        return pd.DataFrame()
+        
+    df = pd.json_normalize(results)
+    # we want to keep the following columns to reveal more insight about each day's meal plan. 
+    keep = [c for c in ["id", "name", "num_servings", "total_time_minutes", "nutrition.calories"] if c in df.columns]
+    return df[keep]
+```
+
+Put two helper functions together to get one meal plan number
+```{python}
+import re
+def get_mealplan_data(plan_number):
+    # scrape the weekly plan table (Day, Name, Link, Price)
+    plan = get_weekly_plan(plan_number)
+    
+    # holds a dataframe for each day (after matching Tasty recipes)
+    out = []
+    # for each meal in the plan, search Tasty and attach the returned results 
+    for _,row in plan.iterrows():
+        # search 100 matches for the recipe type
+        matches = match_recipe(row["Name"], limit=100)
+        # if Tasty returns nothing, create one empty row to still keep the meal
+        if matches.empty:
+            matches = pd.DataFrame([{
+                "id":None, 
+                "name": None, 
+                "num_servings":None, 
+                "total_time_minutes": None, 
+                "nutrition.calories":None}])
+
+        # Add the meal-plan columns to the left of the Tasty columns (tried using the merge function but table returned empty table with only column headers. i has to ask ai for this part)
+        matches.insert(0, "Day", row["Day"])
+        matches.insert(1, "Meal", row["Name"])
+        matches.insert(2, "Link", row["Link"])
+        matches.insert(3, "Price", row["Price"])
+    
+        # rename Tasty's anem to 'Tasty Recipe' so we can see both names 
+        if "name" in matches.columns:
+            matches.rename(columns={"name": "Tasty Recipe"}, inplace=True)
+        out.append(matches)
+    # if nothing was added return an empty dataframe 
+    if not out:
+        print("No recipes found for this meal plan.")
+        return pd.DataFrame()
+    # using concat function, stack the days together in one final dataframe 
+    df = pd.concat(out, ignore_index=True)
+    # return the columns we want 
+    columns = ["Day", "Name", "Link", "Price", "id", "Tasty Recipe", 
+    "num_servings", "total_time_minutes", "nutrition.calories"]
+
+    df = df[[c for c in columns if c in df.columns]]
+    return df
+```
+
+```{python}
+df = get_mealplan_data(202)
+df
+```
+Scrape the weekly meal plan, search the Tasty API for each meal and combine everything into one whole Dataframe with your meal-plan info plus Tasty matches 
+
+4. Add a column with fuzzy matching 
+Add a column to your df dataset indicating whether the recipe in that row is vegetarian or not
+```{python}
+import re
+# if the column is called "Meal" (from part 3), rename it so we can use the same name later
+if "Meal" in df.columns:
+    df.rename(columns={"Meal": "Name of Recipe"}, inplace=True)
+
+# if the table has "Tasty Recipe" from the API, use that column name instead 
+if "Tasty Recipe" in df.columns:
+    name_column = "Tasty Recipe"
+else:
+    name_column = "Name of Recipe"
+
+# create a vocabulary list of meat words to look for in recipe titles 
+meat_words = ["chicken", "beef", "pork", "fish", "shells", "bacon", "turkey", "ham" "lamb", "duck", "crab", "tuna"]
+
+# make a pattern that looks for any of the meat words  
+pattern = re.compile("|".join(meat_words), re.IGNORECASE)
+
+# create a new column called "Vegetarian"
+# this will have have True/False outputs
+df["Vegetarian"] = ~df[name_column].fillna("").str.contains(pattern) # return True if name column does not contain meat words (~)
+
+```
+```{python}
+df
+```
+The function adds a new column Vegetarian that checks through the vocab list and says True if the recipe name does not contain any meat days 
+
+5. Analyze
+Make a visualization that tells a story about nutrition information (available in the Tasty API results) across the week for Mealplan 202. 
+
+Bar chart of Nutritional Calories by Day of the Week for Mealplan 202. 
+```{python}
+# Get the Tasty Recipe column name and get one match for each day of the week
+names = "Tasty Recipe" if "Tasty Recipe" in df.columns else "Name"
+
+#filter for that have nutritional calories 
+plot_df = df.dropna(subset=["nutrition.calories"]).copy()
+
+#convert the calories string to numeric values
+plot_df["calories"] = pd.to_numeric(plot_df["nutrition.calories"], errors="coerce")
+
+#if there are multiple matches per day, make sure to keep only the first one that contains the calories value
+plot_df = (plot_df
+            .sort_values(["Day"])
+            .dropna(subset=["calories"])
+            .groupby("Day", as_index=False)
+            .first())
+
+#order the day of the week
+order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+plot_df["Day"] = pd.Categorical(plot_df["Day"], categories=order, ordered=True)
+
+#label for each column on the bar chart
+plot_df["cal_lab"] = plot_df["calories"].round().astype("Int64")
+```
+Plot the graph 
+```{python}
+from plotnine import *
+plot = (
+    ggplot(plot_df, aes(x="Day", y="calories", fill="Vegetarian"))
+    + geom_col()
+    + geom_text(aes(label="cal_lab"), va="bottom", nudge_y=20, size=8)
+    + labs(
+        title="Mealplan 202: Calories by Day (Tasty API)", 
+        subtitle=f"Recipe names from {names}; color shows Vegetarian=True/False",
+        x="Day of the Week", 
+        y="Calories"
+    )
+    + theme_minimal()
+    + theme(axis_text_x=element_text(angle=45, ha="right"))
+)
+plot
+```
+The bar chart shows how daily calorie totals differ throughout the week for MealPlan 202 and highlights which meals are vegetarian vs. non-vegetarian. It also shows that Wednesday's meal has the highest calorie content which Friday's has the lowest. Vegetarian meals have a higher calorie value that non-veg ones in this plan. 
