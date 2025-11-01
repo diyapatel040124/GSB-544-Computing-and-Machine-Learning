@@ -1,0 +1,186 @@
+---
+title: Palmer Penguins Modeling
+jupyter: python3
+---
+
+
+Import the Palmer Penguins dataset and print out the first few rows.
+
+Suppose we want to predict `bill_depth_mm` using the other variables in the dataset.
+
+**Dummify** all variables that require this.
+
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+# Code Here
+!pip install palmerpenguins
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+import palmerpenguins
+import pandas as pd
+import numpy as np
+
+# Load the penguins dataset into a pandas DataFrame
+df = palmerpenguins.load_penguins()
+
+# Display the first few rows
+
+df=df.dropna()
+df
+```
+
+Let's use the other variables to predict `bill_depth_mm`. Prepare your data and fit the following models on a training dataset subset of the entire dataset:
+
+* Four different models, each containing a different set of predictor variables
+
+Create a plot like the right plot of Fig 1. in our `Model Validation` chapter with the training and test error plotted for each of your four models.
+
+Which of your models was best?
+
+```{python}
+# Code Here
+from sklearn.linear_model import LinearRegression
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 80}
+X_train = df[["bill_length_mm"]]
+y_train = df["bill_depth_mm"]
+
+bill_model = LinearRegression()
+bill_model.fit(
+    X=X_train,
+    y=y_train
+)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 422}
+X_new = pd.DataFrame()
+X_new["bill_length_mm"] = np.linspace(0,1,num=10000)
+y_new = pd.Series(
+    bill_model.predict(X_new),
+    index = X_new["bill_length_mm"]
+)
+df.plot.scatter(x="bill_length_mm", y="bill_depth_mm")
+y_new.plot.line(c="orange");
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+#| collapsed: true
+y_train_ = bill_model.predict(X=X_train)
+y_train_
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+df["bill_predict"] = y_train_
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+mse = ((y_train - y_train_)**2).mean()
+mse
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+rmse = np.sqrt(mse)
+rmse
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+from sklearn.metrics import mean_squared_error, root_mean_squared_error
+mean_squared_error(y_train, y_train_)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+root_mean_squared_error(y_train, y_train_)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+y_train.std()
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+from sklearn.metrics import mean_absolute_error, r2_score
+mean_absolute_error(y_train, y_train_)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+r2_score(y_train, y_train_)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+df["bill_2"] = df["bill_length_mm"] ** 2
+df["bill_3"] = df["bill_length_mm"] ** 3
+df["bill_4"] = df["bill_length_mm"] ** 4
+df["bill_5"] = df["bill_length_mm"] ** 5
+df["random_noise1"] = np.random.normal(0, 0.1, size=len(df))
+df["random_noise2"] = np.random.normal(0,0.2, size=len(df))
+df["random_noise3"] = np.random.normal(0,0.3,size=len(df))
+df
+```
+
+```{python}
+from sklearn.metrics import mean_squared_error, r2_score
+
+models = {
+    "Model 1": ['bill_length_mm'],
+    "Model 2": ['bill_length_mm', 'bill_2'],
+    "Model 3": ['bill_length_mm', 'bill_2', 'bill_3'],
+    "Model 4": ['bill_length_mm', 'bill_2', 'bill_3', 'bill_4']
+
+}
+
+rows = []
+for name, Xcols in models.items():
+  X_train = df[Xcols]
+  y_true = y_train
+  model = LinearRegression().fit(X_train, y_true)
+  y_pred = model.predict(X_train)
+
+  df[f"{name}_predict"] = y_pred
+
+  train_mse = mean_squared_error(y_true, y_pred)
+  train_r2 = r2_score(y_true, y_pred)
+
+  rows.append({"Model": name,
+               "Train MSE": train_mse,
+               "Train R2": train_r2,
+               'Flexibility': len(Xcols)})
+  train_error = pd.DataFrame(rows)
+  train_error
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 461}
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 497}
+import plotnine
+from plotnine import *
+ggplot(train_error, aes(x="Flexibility", y="Train MSE")) + \
+geom_line(color="blue") + \
+geom_point(size=3, color="orange") + \
+labs(
+    title="Training MSE vs Model Flexibility",
+    x = "Model Flexibility (# of predictors)",
+    y="Training MSE"
+) + \
+theme_minimal()
+```
+
