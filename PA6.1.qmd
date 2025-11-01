@@ -1,0 +1,178 @@
+---
+title: Palmer Penguins Modeling
+jupyter: python3
+---
+
+
+Import the Palmer Penguins dataset and print out the first few rows.
+
+Suppose we want to predict `bill_depth_mm` using the other variables in the dataset.
+
+Which variables would we need to **dummify**?
+
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+pip install palmerpenguins
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+import palmerpenguins
+import pandas as pd
+
+# Load the penguins dataset into a pandas DataFrame
+df = palmerpenguins.load_penguins()
+
+# Display the first few rows
+
+df=df.dropna()
+df
+```
+
+
+Let's use `bill_length_mm` to predict `bill_depth_mm`. Prepare your data and fit the following models on the entire dataset:
+
+* Simple linear regression (e.g. straight-line) model
+* Quadratic (degree 2 polynomial) model
+* Cubic (degree 3 polynomial) model
+* Degree 10 polynomial model
+
+Make predictions for each model and plot your fitted models on the scatterplot.
+
+```{python}
+# Code Here
+# simple linear regression model
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import r2_score
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 80}
+# simple linear model
+bill_model = LinearRegression()
+bill_model.fit(
+    X=df[["bill_length_mm"]].dropna(),
+    y=df["bill_depth_mm"].dropna()
+)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+bill_model.coef_, bill_model.intercept_
+```
+
+```{python}
+df["bill_predict"] = bill_model.predict(df[["bill_length_mm"]])
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+# quadratic model
+df["bill_depth_mm_square"] = df["bill_length_mm"] ** 2
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 80}
+square_model = LinearRegression()
+square_model.fit(
+    X=df[["bill_length_mm", "bill_depth_mm_square"]],
+    y=df["bill_depth_mm"]
+)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+df["square_predict"] = square_model.predict(df[["bill_length_mm", "bill_depth_mm_square"]])
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+square_model.coef_, square_model.intercept_
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+# cubic
+df["bill_depth_mm_cubic"] = df["bill_length_mm"] ** 3
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 80}
+cubic_model = LinearRegression()
+cubic_model.fit(
+    X=df[["bill_length_mm", "bill_depth_mm_cubic"]],
+    y=df["bill_depth_mm"]
+)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+cubic_model.coef_, cubic_model.intercept_
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 444}
+# degree 10 polynomial
+df["bill_depth_mm_poly"] = df["bill_length_mm"] ** 10
+df
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 80}
+poly_model = LinearRegression()
+poly_model.fit(
+    X=df[["bill_length_mm", "bill_depth_mm_poly"]],
+    y=df["bill_depth_mm"]
+)
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/}
+poly_model.coef_, poly_model.intercept_
+```
+
+```{python}
+#| colab: {base_uri: https://localhost:8080/, height: 497}
+# plot
+from plotnine import *
+import pandas as pd
+
+# Create a DataFrame with the predicted values for each model
+predicted_df = pd.DataFrame({
+    'bill_length_mm': df['bill_length_mm'],
+    'bill_predict': df['bill_predict'],
+    'square_predict': df['square_predict'],
+    'cubic_predict': cubic_model.predict(df[["bill_length_mm", "bill_depth_mm_cubic"]]), # Add cubic predictions
+    'poly_predict': poly_model.predict(df[["bill_length_mm", "bill_depth_mm_poly"]]) # Add polynomial predictions
+})
+
+(
+    ggplot(df, aes(x='bill_length_mm', y="bill_depth_mm"))
+    + geom_point()
+    + geom_line(predicted_df, aes(y='bill_predict', color="'Linear'")) # Plot linear model
+    + geom_line(predicted_df, aes(y='square_predict', color="'Quadratic'")) # Plot quadratic model
+    + geom_line(predicted_df, aes(y='cubic_predict', color="'Cubic'")) # Plot cubic model
+    + geom_line(predicted_df, aes(y='poly_predict', color="'Degree 10'")) # Plot polynomial model
+    + labs(
+        title='Bill Depth vs. Bill Length with Model Fits',
+        x='Bill Length (mm)',
+        y='Bill Depth (mm)'
+    )
+    + scale_color_manual(name="Model", values={"Linear": "blue", "Quadratic": "red", "Cubic": "green", "Degree 10": "purple"}) # Add legend
+)
+```
+
+* Are any of the models above underfitting the data? If so, which ones and how can you tell?
+* Are any of thhe models above overfitting the data? If so, which ones and how can you tell?
+* Which of the above models do you think fits the data best and why?
+
+The linear model underfits the data because there are less points aligned to the line.
+The quadratic and the cubic models are overfitting the data and you can tell from this by how theres more points aligned to the curves.
+The one that best fits the model is the polynomial degree 10 line because it does the best job in explaining the variation in bill depth.
+
