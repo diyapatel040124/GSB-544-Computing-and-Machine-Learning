@@ -1,0 +1,68 @@
+---
+title: "Lab 6: Variable Selection and Regularization"
+author: Diya Patel
+format: 
+    html:
+        toc: true
+        code-fold: true 
+        embed-resources: true
+echo: true
+---
+Part I: Different Model Specs 
+A. Regression without regularization 
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
+```
+```{python}
+import pandas as pd 
+df = pd.read_csv('Hitters.csv')
+df.head()
+df = df.dropna(subset=['Salary'])
+```
+
+```{python}
+league_dummy = pd.get_dummies(df['League'], prefix = 'league')
+division_dummy = pd.get_dummies(df['Division'], prefix = 'division')
+newleague_dummy = pd.get_dummies(df['NewLeague'], prefix = 'newleague')
+df = pd.concat([df, league_dummy, division_dummy, newleague_dummy], axis=1)
+df
+```
+
+1. Create a pipeline that includes all the columns as predictors for Salary, and performs ordinary linear regression
+```{python}
+lr = LinearRegression()
+
+X = df[["AtBat", "Hits", "HmRun", "Runs", "RBI", "Walks", "Years", "CAtBat", "CHits", "CHmRun", "CRuns", "CRBI", "CWalks", "League", "Division", "PutOuts", "Assists", "Errors", "NewLeague"]]
+y = df["Salary"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+X_train_s = (X_train - X_train.mean())/X_train.std()
+
+lr_fitted = lr.fit(X_train_s, y_train)
+lr_fitted.coef_
+```
+
+```{python}
+df = pd.DataFrame(data = {"AtBat", "Hits", "HmRun", "Runs", "RBI", "Walks", "Years", "CAtBat", "CHits", "CHmRun", "CRuns", "CRBI", "CWalks", "League", "Division", "PutOuts", "Assists", "Errors", "NewLeague"})
+df
+```
+
+Standardize our new data
+```{python}
+df_s = (df - df.mean())/df.std()
+df_s
+```
+```{python}
+lr_pipeline = Pipeline(
+    [StandardScaler(),
+    LinearRegression()]
+)
+lr_pipeline
+```
