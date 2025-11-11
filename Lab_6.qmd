@@ -8,6 +8,9 @@ format:
         embed-resources: true
 echo: true
 ---
+
+GitHub Link: https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab_6.html
+
 Part I: Different Model Specs 
 ```{python}
 import pandas as pd
