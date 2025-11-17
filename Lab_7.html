@@ -2209,9 +2209,10 @@ vertical-align: -.125em;
 </header>
 
 
+<p>GitHub Link: https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab_7.html</p>
 <p>The Data In this lab, we will use medical data to predict the likelihood of a person experiencing an exercise-induced heart attack.</p>
 <p>Our dataset consists of clinical data from patients who entered the hospital complaining of chest pain (“angina”) during exercise. The information collected includes: - age - sex - cp - trtbps - chol - restecg - thalach - output</p>
-<div id="ab83eb64" class="cell" data-execution_count="1">
+<div id="7d02f8c4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -2243,7 +2244,7 @@ vertical-align: -.125em;
 </div>
 <p>Part One: Fitting Models Create a final best model for each of the model types studied this week. For each, you should: - Find the best model based on ROC AUC for predicting the target variable - Report the (cross-validated) ROC AUC metric - Fit the final model - Output a confusion matrix, that is, counts of how many observations fell into each predicted class for each true class - (Where applicable) Interpret the coefficients and/or estimates produced by the model fit</p>
 <p>Q1: KNN</p>
-<div id="eaafacbd" class="cell" data-execution_count="2">
+<div id="d31a1af2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># classify using 10-nearest neighbors. Extract the training data and scale the features</span></span>
@@ -2263,7 +2264,7 @@ vertical-align: -.125em;
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="40297324" class="cell" data-execution_count="3">
+<div id="376ef319" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the kNN pipeline </span></span>
@@ -2302,19 +2303,19 @@ Best CV ROC-AUC: 0.8506146772767462</code></pre>
 </div>
 </div>
 <p>Best Params: n_neighbors = 11 weights = distance p = 1 Best CV ROC-AUC = 0.8506146772767462</p>
-<div id="b6480b08" class="cell" data-execution_count="4">
+<div id="72b28566" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># confusion matrix</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>confusion_matrix(y_train, y_train_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>array([[ 95,  32],
        [ 36, 110]])</code></pre>
 </div>
 </div>
 <p>array([[ 95, 32], [ 36, 110]]) TN = 95 patients truly not at risk correctly predicted low risk FP = 32 patients not risk were flagged as at risk FN = patients truly at risk were missed TP = 110 at risk patients were correctly identified</p>
-<div id="e39b318c" class="cell" data-execution_count="5">
+<div id="7cd93162" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y_cv_proba <span class="op">=</span> cross_val_predict(best_knn, X_train, y_train, cv<span class="op">=</span>cv, method<span class="op">=</span><span class="st">&quot;predict_proba&quot;</span>)[:,<span class="dv">1</span>]</span>
@@ -2327,7 +2328,7 @@ Best CV ROC-AUC: 0.8506146772767462</code></pre>
 </div>
 <p>Cross-validated AUC: 0.8475353252076367 If one at-risk patient and one not-at risk patients were picked at random, the model ranks the at-risk patient higher about 85% of the time.</p>
 <p>Q2: Logistic Regression</p>
-<div id="5e4a462f" class="cell" data-execution_count="6">
+<div id="eb66b970" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lr_pipeline <span class="op">=</span> make_pipeline(</span>
@@ -2362,9 +2363,7 @@ Best CV ROC-AUC: 0.8506146772767462</code></pre>
 Best CV ROC AUC: 0.864367816091954</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/opt/anaconda3/lib/python3.13/site-packages/sklearn/model_selection/_validation.py:528: FitFailedWarning:
-
-
+<pre><code>/opt/anaconda3/lib/python3.13/site-packages/sklearn/model_selection/_validation.py:528: FitFailedWarning: 
 25 fits failed out of a total of 50.
 The score on these train-test partitions for these parameters will be set to nan.
 If these failures are not expected, you can try to debug them by setting error_score=&#39;raise&#39;.
@@ -2391,31 +2390,27 @@ Traceback (most recent call last):
     )
 ValueError: Solver lbfgs supports only &#39;l2&#39; or None penalties, got l1 penalty.
 
-
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/model_selection/_search.py:1108: UserWarning:
-
-One or more of the test scores are non-finite: [       nan 0.83271158        nan 0.86074129        nan 0.86436782
-        nan 0.86301256        nan 0.86300336]
-</code></pre>
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/model_selection/_search.py:1108: UserWarning: One or more of the test scores are non-finite: [       nan 0.83271158        nan 0.86074129        nan 0.86436782
+        nan 0.86301256        nan 0.86300336]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>array([[ 96,  31],
        [ 24, 122]])</code></pre>
 </div>
 </div>
 <p>array([[ 96, 31], [ 24, 122]]) TN = 96 patients truly not at risk correctly predicted low risk FP = 31 patients not at risk were glagged as at risk FN = 24 patients truly at risk were missed TP = 122 at-risk patients were correcly identified</p>
-<div id="f160a73f" class="cell" data-execution_count="7">
+<div id="a731c621" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lr_auc <span class="op">=</span> cross_val_score(best_lr, X_train, y_train, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>).mean()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lr_auc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>np.float64(0.864367816091954)</code></pre>
 </div>
 </div>
 <p>Best params: C = 1 Penalty = l2 Best CV ROC AUC = 0.864367816091954 If you randomly pick one at-risk and one not-at-risk patient, the model ranks the at-risk patient higher about 85% of the time.</p>
-<div id="0e6dce7d" class="cell" data-execution_count="8">
+<div id="da41e06a" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dt_pipeline <span class="op">=</span> make_pipeline(</span>
@@ -2448,25 +2443,25 @@ One or more of the test scores are non-finite: [       nan 0.83271158        nan
 <pre><code>Best parameters for Decision Tree: {&#39;decisiontreeclassifier__max_depth&#39;: 3, &#39;decisiontreeclassifier__min_samples_leaf&#39;: 4, &#39;decisiontreeclassifier__min_samples_split&#39;: 2}
 Best CV ROC AUC: 0.7832742705570291</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>array([[101,  26],
        [ 29, 117]])</code></pre>
 </div>
 </div>
 <p>array([[101, 26], [ 29, 117]]) TN = 101 patients truly not at risk correctly predicted low risk FP = 26 patients not at risk were flagged as at risk FN = 29 patients truly at risk were missed TP = 117 at-risk patients were correctly identified</p>
-<div id="051081c5" class="cell" data-execution_count="9">
+<div id="5f191f5b" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>auc3 <span class="op">=</span> cross_val_score(best_tree, X_train, y_train, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>).mean()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>auc3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>np.float64(0.7832742705570291)</code></pre>
 </div>
 </div>
 <p>Best Params: max_depth = 3 min_sample_leaf = 4 min_sample_split = 2 Best CV ROC AUC = 0.7832742705570291 The tuned Decision Tree is less accurate than the other models. The ROC AUC of 0.78 means it performs well at distinguishing between patients at risk and not at risk.</p>
 <p>Q4: Which predictors were most important to predicting heart attack risk?</p>
-<div id="a86fcba0" class="cell" data-execution_count="10">
+<div id="e1016351" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression - coefficients and odds ratios </span></span>
@@ -2488,7 +2483,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>log_reg_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
 
@@ -2588,7 +2583,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 </div>
 <p>The best model based on ROC AUC was Logistic Regression with the highest score 864367816091954. After running the model for the important coefficients, the output shows that chest pain of type 1, so those with typical angina and maximum heart rate achieved during exercise have a much higher likelihood of being at-risk. Given that the other predictor variables’ coefficients (cp 0 and sex) were negative, we can say that chest pain type 0 and one’s sex have much smaller effects.</p>
 <p>ROC Curve plot</p>
-<div id="c85826e8" class="cell" data-execution_count="11">
+<div id="d0a424c2" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
@@ -2642,7 +2637,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <p>The ROC Curve shows how each kNN, Logistic Regression, and Decision Trees distinguishes between Class 1 of patients at risk of heart attack and class 0 of patients who are not at risk. kNN had the highest AUC .88, and next was Logistic Regression with .86 and lastly, Decision Tree. This shows that all models can effectively discriminate between patients at risk and not at risk of heart attack.</p>
 <p>Part Two: Metrics Consider the following metrics: - Recall = Of the observations that are truly Class A, how many were predicted to be Class A? - Precision = Of all the observations classified as Class A, how many of them were truly from Class A? - Negative Predictive Value = Of all the observations classified as NOT Class A, how many were truly NOT Class A?</p>
 <p>Compute each of these metrics (cross-validated) for your three models (kNN, Logistic Regression, and Decision Tree) in Part One.</p>
-<div id="79db2ca1" class="cell" data-execution_count="12">
+<div id="06136747" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
@@ -2655,7 +2650,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>negative_pred <span class="op">=</span> precision_score(y_train<span class="op">==</span><span class="dv">0</span>, knn_pred<span class="op">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="97bc43ac" class="cell" data-execution_count="13">
+<div id="67051cab" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#logistic regression</span></span>
@@ -2665,7 +2660,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>negative_pred2 <span class="op">=</span> precision_score(y_train<span class="op">==</span><span class="dv">0</span>, lr_pred<span class="op">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="15bab2cd" class="cell" data-execution_count="14">
+<div id="ce8fe31b" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#decision tree</span></span>
@@ -2676,7 +2671,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>negative_pred3 <span class="op">=</span> precision_score(y_train<span class="op">==</span><span class="dv">0</span>, dt_pred<span class="op">==</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="de731407" class="cell" data-execution_count="15">
+<div id="ff71ace0" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>metrics_table <span class="op">=</span> pd.DataFrame({</span>
@@ -2687,7 +2682,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>metrics_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 
 
@@ -2748,7 +2743,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <p>Q4: The hospital is training a new batch of doctors, and they would like to compare the diagnoses of these doctors to the predictions given by the algorithm to measure the ability of new doctors to diagnose patients.</p>
 <p>ROC AUC would be best to measure overall agreement between doctors and the algorithm showing how well doctors identify risk patterns the model captures. Using Logistic Regression could reflect pattern recognition and this is similar to how doctors assess patients by comparing them to prior cases. It also has the highest AUC 0.86. With an AUC around 0.86, this would indicate strong consistency between model predictions making it useful for evaluating the new incoming doctors.</p>
 <p>Part Four: Validation Use each of the final models in Part One Q1-3, predict the target variable in the validation dataset. For each, output a confusion matrix, and report the ROC AUC, the precision, and the recall. Compare these values to the cross-validated estimates you reported in Part One and Part Two. Did our measure of model success turn out to be approximately correct for the validation data?</p>
-<div id="e9e96c77" class="cell" data-execution_count="16">
+<div id="6350eac5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>validation_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;heart_attack_validation.csv&quot;</span>)</span>
@@ -2758,7 +2753,7 @@ Best CV ROC AUC: 0.7832742705570291</code></pre>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> validation_df[<span class="st">&quot;output&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="4b9a36fc" class="cell" data-execution_count="17">
+<div id="6f913f86" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kNN Validation </span></span>
@@ -2787,7 +2782,7 @@ Recall: 0.6842105263157895</code></pre>
 </div>
 </div>
 <p>kNN Results: [[10 1] [ 6 13]] ROC AUC: 0.84688995215311 Precision: 0.9285714285714286 Recall: 0.6842105263157895</p>
-<div id="c461ff58" class="cell" data-execution_count="18">
+<div id="28948d43" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>y_pred_lr <span class="op">=</span> best_lr.predict(X_test)</span>
@@ -2814,7 +2809,7 @@ Recall: 0.7368421052631579</code></pre>
 </div>
 </div>
 <p>Logistic Regression Results [[ 9 2] [ 5 14]] ROC AUC: 0.8851674641148326 Precision: 0.875 Recall: 0.7368421052631579</p>
-<div id="c4e2ac48" class="cell" data-execution_count="19">
+<div id="579ef845" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># decision tree validation </span></span>
@@ -2842,7 +2837,7 @@ Recall: 0.631578947368421</code></pre>
 </div>
 </div>
 <p>Decision Tree Results: [[ 9 2] [ 7 12]] ROC AUC: 0.7248803827751196 Precision: 0.8571428571428571 Recall: 0.631578947368421</p>
-<div id="89692b8b" class="cell" data-execution_count="20">
+<div id="79420daf" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize into dataframe </span></span>
@@ -2855,7 +2850,7 @@ Recall: 0.631578947368421</code></pre>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>validation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <div>
 
 
@@ -2901,7 +2896,7 @@ Recall: 0.631578947368421</code></pre>
 <p>Part Five: Cohen’s Kappa</p>
 <p>Calculate it for the models from Part One, Q1-3, and discuss reasons or scenarios that would make us prefer to use this metric as our measure of model success. Do your conclusions from above change if you judge your models using Cohen’s Kappa instead? Does this make sense?</p>
 <p>What is Cohen’s Kappa? A statistical metric that measures the reliability of two raters rating the same thing, while taking into account the possibility that they could agree by chance. It determines the level of agreement between two raters.</p>
-<div id="2ef30d6a" class="cell" data-execution_count="21">
+<div id="208e96ce" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> cohen_kappa_score</span>

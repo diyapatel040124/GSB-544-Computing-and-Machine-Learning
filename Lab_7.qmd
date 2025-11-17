@@ -9,6 +9,8 @@ format:
 echo: true
 ---
 
+GitHub Link: https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab_7.html
+
 The Data
 In this lab, we will use medical data to predict the likelihood of a person experiencing an exercise-induced heart attack.
 
