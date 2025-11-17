@@ -146,7 +146,7 @@ lr_pipeline = make_pipeline(
 # set hyperparameters to search
 lr_param_grid = {
     "logisticregression__C": [0.01, 0.1, 1, 10, 100],
-    "logisticregression__penalty": ["l1", "l2"]
+    "logisticregression__penalty": ["l2"]
 }
 
 # grid search using ROC AUC as the selection metric
