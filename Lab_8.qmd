@@ -8,6 +8,7 @@ format:
         embed-resources: true
 echo: true 
 ---
+GitHub link: https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab_8.html
 
 ```{python}
 import pandas as pd 

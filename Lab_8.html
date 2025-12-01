@@ -2209,7 +2209,8 @@ vertical-align: -.125em;
 </header>
 
 
-<div id="ffe54a59" class="cell" data-execution_count="1">
+<p>GitHub link: https://github.com/diyapatel040124/GSB-544-Computing-and-Machine-Learning/blob/main/Lab_8.html</p>
+<div id="90116537" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
@@ -2225,7 +2226,7 @@ vertical-align: -.125em;
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="fbc9e262" class="cell" data-execution_count="2">
+<div id="9ae71432" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;cannabis_full.csv&#39;</span>)</span>
@@ -2393,7 +2394,7 @@ vertical-align: -.125em;
 </div>
 <p>Part One: Binary Classification Create a dataset that is limited to only the Sativa and Indica type cannabis strains. Create a final best model for each of the four new model types: LDA, QDA, SVC, and SVM. For each, you should: - Choose a metric you will use to select your model, and briefly justify your choice. - Find the best model for predicting the Type variable. Don’t forget to tune any hyperparameters. - Report the cross-validated metric. - Fit the final model. - Output a confusion matrix</p>
 <p>Q1: LDA</p>
-<div id="8e43b348" class="cell" data-execution_count="3">
+<div id="b7b219a5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_types <span class="op">=</span> df[df[<span class="st">&quot;Type&quot;</span>].isin([<span class="st">&quot;sativa&quot;</span>, <span class="st">&quot;indica&quot;</span>])]</span>
@@ -2419,7 +2420,7 @@ vertical-align: -.125em;
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="79976b1d" class="cell" data-execution_count="4">
+<div id="152a22ca" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lda_pipe <span class="op">=</span> Pipeline([</span>
@@ -2486,7 +2487,7 @@ accuracy                          0.921       214</code></pre>
 <p>Confusion Matrix: [[123 9] –&gt; out of 132 Indica strains, 123 are classified as Indica [ 8 74]] –&gt; out of 82 Sativa strains, 74 are classified as Sativa and 8 were misclassified</p>
 <p>Metric Selection: F1-Score For LDA, I used the macro F1-Score to find the average of the F1-scores across both of the binary classes which will weigh them equally. F1 makes sure that precision and recall are both balanced which can come up when misclassifying either Sativa or Indica strains. F1 also treats both binary classes equally even when the class sizes are not equal. Macro F1 is the most equal and fair metric for comparing the hyperparameter values.</p>
 <p>Q2: QDA</p>
-<div id="2729c56e" class="cell" data-execution_count="5">
+<div id="b18451f9" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> QuadraticDiscriminantAnalysis <span class="im">as</span> QDA</span>
@@ -2567,7 +2568,11 @@ accuracy                          0.921       214</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
@@ -2587,21 +2592,11 @@ accuracy                          0.921       214</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
@@ -2609,7 +2604,13 @@ accuracy                          0.921       214</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
@@ -2671,7 +2672,7 @@ accuracy                          0.626       214</code></pre>
 <p>Metric Selection: For QDA, I used the same preprocessing pipeline as in LDA because QDA is a variant on LDA. The predictors were standardized and one-hot encoded. After tuning the hyperparameters I used the F1-Score as the selection metric where Macro F1 averages the F1-scores of Indica and Sativa to treat both binary classes equally and balancing precision and recall and not prioritize either strain.</p>
 <p>QDA is not the ideal linear model for binary classification for the entire dataset because it heavily favored Indica and hardly predicts Sativa. The macro F1-Score is much lower for QDA than in LDA.</p>
 <p>Q3: SVC</p>
-<div id="7bb45add" class="cell" data-execution_count="6">
+<div id="909008a2" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
@@ -2746,7 +2747,7 @@ accuracy                          0.836       214</code></pre>
 <p>The model correctly predicted 92% of Indica and 71% of Sativa. Both had high f1-scoring.</p>
 <p>Confusion Matrix: [[121 11] –&gt; Out of 132 predictions, 121 were correct and 11 were misclassified for Indica [ 24 58]] –&gt; out of 82 predictions 58 were correct and 24 were incorrect Model was more accurate in predicting Indica strains and Sativas were more misclassified.</p>
 <p>Q4: SVM</p>
-<div id="d34d7eb4" class="cell" data-execution_count="7">
+<div id="53afd2c3" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> svm</span>
@@ -2824,7 +2825,7 @@ accuracy                          0.874       214</code></pre>
 <p>Among these, LDA model which had the highest overall F1-Score, demonstrating strong balance between precision and recall for both Sativa and Indica classifications. Its confusion matrix showed accurate predictions for most observations, indicating effective generalization after hyperparameter tuning.</p>
 <p>Part Two: Natural Multiclass Now use the full dataset, including the Hybrid strains.</p>
 <p>Q1: Fit a decision tree, plot the final fit, and interpret the results.</p>
-<div id="2e04ec34" class="cell" data-execution_count="8">
+<div id="f069c396" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
@@ -2908,7 +2909,7 @@ accuracy                          0.583       439</code></pre>
 <p>The overall accuracy is about 58% which is much worse than the Part 1 binary models, and this is likely due to when adding the Hybrid class because the classes become less distinguishable.</p>
 <p>Confusion Matrix: [[150 47 28] –&gt; many hybrids were correctly classified but misclassified 47 Indica and 28 Sativa. [ 47 84 1] –&gt; Indica was mostly correctly classified but misclassified with hybrid [ 51 9 22]] –&gt; only 22 Sativa correctly classified and 51 misclassified as hybrid and 9 as Indica</p>
 <p>Overall decision tree performance was low of 58%, with Hybrid and Indica predicted somewhat accurately but Sativa performed poorly. It makes sense because Hybrid strains share similar effects with Sativa and Indica and Sativa could overlap with hybrid. The confusion matrix showed some mixing up between Sativa and Hybrid to show that the decision boundaries were not distinguishable for these two categories.</p>
-<div id="aa26c3c3" class="cell" data-execution_count="9">
+<div id="ae31a1f4" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2927,7 +2928,7 @@ accuracy                          0.583       439</code></pre>
 </div>
 <p>The decision tree divided the strains based on flavor and effect indicators. For hybrids, they appear in many branches, but they are getting mixed up with Indica in some leaves. It is hard for the tree to separate better, and this matches the low recall score for Sativa in the metrics. For Indica, it is grouped on the left side of the tree and is labeled with effects of relaxed, sleepy, earthy. This is easier to classify than Sativa and was consistent with the model performance. Sativa was mostly found on the right branches and were separated based on strong/unique “uplifting” features. There was some overlap with hybrid so there was some mix up.</p>
 <p>Q2: Report the analyses from Part One for LDA, QDA, and KNN</p>
-<div id="0eddcc06" class="cell" data-execution_count="10">
+<div id="01caae2d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lda_full_pipe <span class="op">=</span> Pipeline([</span>
@@ -2954,6 +2955,32 @@ accuracy                          0.583       439</code></pre>
 <span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, lda_full_grid.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
 <span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, lda_full_grid.predict(X_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Exception ignored in: &lt;function ResourceTracker.__del__ at 0x108dbd1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x106a451c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x104fd91c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x102a551c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>LDA Best Params: {&#39;lda__shrinkage&#39;: 0.5, &#39;lda__solver&#39;: &#39;lsqr&#39;}
 LDA CV macro-F1: 0.616
@@ -2971,6 +2998,26 @@ weighted avg      0.578     0.576     0.575       439
  [ 37  91   4]
  [ 38   9  35]]</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Exception ignored in: &lt;function ResourceTracker.__del__ at 0x104a491c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1070d91c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+ChildProcessError: [Errno 10] No child processes
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x104bad1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes</code></pre>
+</div>
 </div>
 <p>LDA Best Params: {’lda__shrinkage’: 0.5, ’lda__solver’: ‘lsqr’} LDA CV macro-F1: 0.616 precision recall f1-score support</p>
 <pre><code>  hybrid      0.629     0.564     0.595       225
@@ -2981,34 +3028,40 @@ accuracy                          0.576       439</code></pre>
 <p>macro avg 0.549 0.560 0.552 439 weighted avg 0.578 0.576 0.575 439</p>
 <p>[[127 57 41] [ 37 91 4] [ 38 9 35]]</p>
 <p>QDA</p>
-<div id="9468d0bc" class="cell" data-execution_count="11">
+<div id="8055492c" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>qda_full_pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;qda&quot;</span>, QDA())</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&quot;qda__reg_param&quot;</span>: [<span class="fl">0.0</span>,<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.99</span>]}</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>qda_full_grid <span class="op">=</span> GridSearchCV(</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    qda_full_pipe,</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">&quot;f1_macro&quot;</span>,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>cv,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>qda_full_grid.fit(X_train, y_train)</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;QDA Best Params:&quot;</span>, qda_full_grid.best_params_)</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;QDA CV macro-F1:</span><span class="sc">{:.3f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(qda_full_grid.best_score_))</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, qda_full_grid.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, qda_full_grid.predict(X_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>qda_full_pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;qda&quot;</span>, QDA())</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&quot;qda__reg_param&quot;</span>: [<span class="fl">0.0</span>,<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.99</span>]}</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>qda_full_grid <span class="op">=</span> GridSearchCV(</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    qda_full_pipe,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">&quot;f1_macro&quot;</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>cv,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>qda_full_grid.fit(X_train, y_train)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;QDA Best Params:&quot;</span>, qda_full_grid.best_params_)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;QDA CV macro-F1:</span><span class="sc">{:.3f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(qda_full_grid.best_score_))</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, qda_full_grid.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, qda_full_grid.predict(X_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
@@ -3051,51 +3104,11 @@ accuracy                          0.576       439</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
@@ -3115,6 +3128,52 @@ accuracy                          0.576       439</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
+/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
+  warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
@@ -3129,19 +3188,19 @@ accuracy                          0.576       439</code></pre>
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 0 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x106db11c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x10236d1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
-  warnings.warn(
-/opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning: The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
   warnings.warn(
@@ -3195,6 +3254,36 @@ The covariance matrix of class 0 is not full rank. Increasing the value of param
 
 The covariance matrix of class 1 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
 
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x106e551c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1049d91c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1037ad1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x106ce91c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1027ed1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
 /opt/anaconda3/lib/python3.13/site-packages/sklearn/discriminant_analysis.py:1024: LinAlgWarning:
 
 The covariance matrix of class 2 is not full rank. Increasing the value of parameter `reg_param` might help reducing the collinearity.
@@ -3227,35 +3316,35 @@ accuracy                          0.401       439</code></pre>
 <p>macro avg 0.409 0.437 0.398 439 weighted avg 0.454 0.401 0.400 439</p>
 <p>[[66 83 76] [30 70 32] [25 17 40]]</p>
 <p>KNN</p>
-<div id="a6d15077" class="cell" data-execution_count="12">
+<div id="56e2dc03" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>knn_full_pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;knn&quot;</span>, KNeighborsClassifier())</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;knn__n_neighbors&quot;</span>: [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>],</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;knn__weights&quot;</span>: [<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;distance&quot;</span>]</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>knn_full_grid <span class="op">=</span> GridSearchCV(</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    knn_full_pipe,</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">&quot;f1_macro&quot;</span>,</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>cv,</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>knn_full_grid.fit(X_train, y_train)</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;KNN Best Params:&quot;</span>, knn_full_grid.best_params_)</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;KNN CV macro-F1:</span><span class="sc">{:.3f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(knn_full_grid.best_score_))</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, knn_full_grid.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, knn_full_grid.predict(X_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>knn_full_pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;knn&quot;</span>, KNeighborsClassifier())</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;knn__n_neighbors&quot;</span>: [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>],</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;knn__weights&quot;</span>: [<span class="st">&quot;uniform&quot;</span>, <span class="st">&quot;distance&quot;</span>]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>knn_full_grid <span class="op">=</span> GridSearchCV(</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    knn_full_pipe,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">&quot;f1_macro&quot;</span>,</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>cv,</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>knn_full_grid.fit(X_train, y_train)</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;KNN Best Params:&quot;</span>, knn_full_grid.best_params_)</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;KNN CV macro-F1:</span><span class="sc">{:.3f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(knn_full_grid.best_score_))</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, knn_full_grid.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, knn_full_grid.predict(X_test)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>KNN Best Params: {&#39;knn__n_neighbors&#39;: 7, &#39;knn__weights&#39;: &#39;distance&#39;}
@@ -3288,42 +3377,86 @@ accuracy                          0.556       439</code></pre>
 <p>Part Three: Multiclass from Binary Consider two models designed for binary classification: SVC and Logistic Regression</p>
 <p>Q1: Fit and report metrics for OvR versions of the models. That is, for each of the two model types, create three models: - Indica vs. Not Indica - Sativa vs. Not Sativa - Hybrid vs. Not Hybrid</p>
 <p>Indica vs. Not-Indica</p>
-<div id="cebda8a3" class="cell" data-execution_count="13">
+<div id="76470c11" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>y_train_indica <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;indica&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y_test_indica <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;indica&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>lr_indica <span class="op">=</span> Pipeline([</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Indica vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_indica, X_train, y_train_indica, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>lr_indica.fit(X_train, y_train_indica)</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_indica.predict(X_test)</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Indica vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_indica, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_indica, pred_lr))</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>svc_indica <span class="op">=</span> Pipeline([</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Indica vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_indica, X_train, y_train_indica, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>svc_indica.fit(X_train, y_train_indica)</span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_indica.predict(X_test)</span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Indica vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_indica, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_indica, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>y_train_indica <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;indica&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y_test_indica <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;indica&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>lr_indica <span class="op">=</span> Pipeline([</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Indica vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_indica, X_train, y_train_indica, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>lr_indica.fit(X_train, y_train_indica)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_indica.predict(X_test)</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Indica vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_indica, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_indica, pred_lr))</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>svc_indica <span class="op">=</span> Pipeline([</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Indica vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_indica, X_train, y_train_indica, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>svc_indica.fit(X_train, y_train_indica)</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_indica.predict(X_test)</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Indica vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_indica, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_indica, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Exception ignored in: &lt;function ResourceTracker.__del__ at 0x105a091c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x110f611c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x10304d1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1024091c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x107e511c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1025dd1c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes
+Exception ignored in: &lt;function ResourceTracker.__del__ at 0x1101851c0&gt;
+Traceback (most recent call last):
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 82, in __del__
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 91, in _stop
+  File &quot;/opt/anaconda3/lib/python3.13/multiprocessing/resource_tracker.py&quot;, line 116, in _stop_locked
+ChildProcessError: [Errno 10] No child processes</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>LR (Indica vs. Not) - CV F1: 0.6398129647895296
 
@@ -3375,38 +3508,38 @@ accuracy                          0.681       439</code></pre>
 <p>macro avg 0.551 0.519 0.489 439 weighted avg 0.614 0.681 0.614 439</p>
 <p>SVC Confusion Matrix: [[284 23] [117 15]]</p>
 <p>Sativa vs. Not-Sativa</p>
-<div id="6ddf9250" class="cell" data-execution_count="14">
+<div id="404b90dc" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>y_train_sativa <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;sativa&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>y_test_sativa <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;sativa&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>lr_sativa <span class="op">=</span> Pipeline([</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Sativa vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_sativa, X_train, y_train_sativa, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>lr_sativa.fit(X_train, y_train_sativa)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_sativa.predict(X_test)</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Sativa vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_sativa, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_sativa, pred_lr))</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>svc_sativa <span class="op">=</span> Pipeline([</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Sativa vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_sativa, X_train, y_train_sativa, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>svc_sativa.fit(X_train, y_train_sativa)</span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_sativa.predict(X_test)</span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Sativa vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_sativa, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_sativa, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>y_train_sativa <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;sativa&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y_test_sativa <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;sativa&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>lr_sativa <span class="op">=</span> Pipeline([</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Sativa vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_sativa, X_train, y_train_sativa, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>lr_sativa.fit(X_train, y_train_sativa)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_sativa.predict(X_test)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Sativa vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_sativa, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_sativa, pred_lr))</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>svc_sativa <span class="op">=</span> Pipeline([</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Sativa vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_sativa, X_train, y_train_sativa, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>svc_sativa.fit(X_train, y_train_sativa)</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_sativa.predict(X_test)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Sativa vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_sativa, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_sativa, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>LR (Sativa vs. Not) - CV F1: 0.4188886588788212
@@ -3459,36 +3592,36 @@ accuracy                          0.811       439</code></pre>
 <p>macro avg 0.623 0.513 0.481 439 weighted avg 0.745 0.811 0.740 439</p>
 <p>SVC Confusion Matrix: [[353 4] [ 79 3]]</p>
 <p>Hybrid vs. Not Hybrid</p>
-<div id="f2102485" class="cell" data-execution_count="15">
+<div id="344552bf" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>y_train_hybrid <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;hybrid&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>y_test_hybrid <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;hybrid&quot;</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>lr_hybrid <span class="op">=</span> Pipeline([</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct), </span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Hybrid vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_hybrid, X_train, y_train_hybrid, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>lr_hybrid.fit(X_train, y_train_hybrid)</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_hybrid.predict(X_test)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Hybrid vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_hybrid, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_hybrid, pred_lr))</span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>svc_hybrid <span class="op">=</span> Pipeline([</span>
-<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
-<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Hybrid vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_hybrid, X_train, y_train_hybrid, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
-<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>svc_hybrid.fit(X_train, y_train_hybrid)</span>
-<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_hybrid.predict(X_test)</span>
-<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Hybrid vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_hybrid, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_hybrid, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y_train_hybrid <span class="op">=</span> (y_train <span class="op">==</span> <span class="st">&quot;hybrid&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>y_test_hybrid <span class="op">=</span> (y_test <span class="op">==</span> <span class="st">&quot;hybrid&quot;</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression (OvR)</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>lr_hybrid <span class="op">=</span> Pipeline([</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct), </span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR (Hybrid vs. Not) - CV F1:&quot;</span>, cross_val_score(lr_hybrid, X_train, y_train_hybrid, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>lr_hybrid.fit(X_train, y_train_hybrid)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>pred_lr <span class="op">=</span> lr_hybrid.predict(X_test)</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">LR Test Report (Hybrid vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_hybrid, pred_lr, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LR Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_hybrid, pred_lr))</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly) OvR</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>svc_hybrid <span class="op">=</span> Pipeline([</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC (poly) (Hybrid vs. Not) - CV F1:&quot;</span>, cross_val_score(svc_hybrid, X_train, y_train_hybrid, scoring<span class="op">=</span><span class="st">&quot;f1&quot;</span>, cv<span class="op">=</span>cv).mean())</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>svc_hybrid.fit(X_train, y_train_hybrid)</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>pred_svc <span class="op">=</span> svc_hybrid.predict(X_test)</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">SVC Test Report (Hybrid vs. Not):</span><span class="ch">\n</span><span class="st">&quot;</span>, classification_report(y_test_hybrid, pred_svc, digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC Confusion Matrix:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion_matrix(y_test_hybrid, pred_svc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>LR (Hybrid vs. Not) - CV F1: 0.6470795687046913
@@ -3554,31 +3687,31 @@ accuracy                          0.535       439</code></pre>
 <li>Hybrid vs. Sativa</li>
 </ul>
 <p>Indica vs. Sativa</p>
-<div id="601f66ca" class="cell" data-execution_count="16">
+<div id="ad526955" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for sativa and indica </span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>lr_pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Indica vs. Sativa) ROC-AUC:&quot;</span>, auc_lr)</span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly)</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>svc_pipe <span class="op">=</span> Pipeline([</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Indica vs. Sativa) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for sativa and indica </span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>lr_pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;lr&quot;</span>, LogisticRegression())</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Indica vs. Sativa) ROC-AUC:&quot;</span>, auc_lr)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="co"># SVC (poly)</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>svc_pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;ct&quot;</span>, ct),</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">&quot;svc&quot;</span>, SVC(kernel<span class="op">=</span><span class="st">&quot;poly&quot;</span>))</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Indica vs. Sativa) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>LogReg (Indica vs. Sativa) ROC-AUC: 0.9263228699832684
@@ -3587,17 +3720,17 @@ SVC (poly) (Indica vs. Sativa) ROC-AUC: 0.8760026950514963</code></pre>
 </div>
 <p>LogReg (Indica vs. Sativa) ROC-AUC: 0.9263228699832684 SVC (poly) (Indica vs. Sativa) ROC-AUC: 0.8760026950514963</p>
 <p>Indica vs. Hybrid</p>
-<div id="a8220771" class="cell" data-execution_count="17">
+<div id="6778568a" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;hybrid&quot;</span>])]</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;hybrid&quot;</span>])]</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc_ovr&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc_ovr&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Indica vs Hybrid) ROC-AUC:&quot;</span>, auc_lr)</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Indica vs. Hybrid) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;hybrid&quot;</span>])]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;indica&quot;</span>, <span class="st">&quot;hybrid&quot;</span>])]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc_ovr&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc_ovr&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Indica vs Hybrid) ROC-AUC:&quot;</span>, auc_lr)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Indica vs. Hybrid) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/anaconda3/lib/python3.13/site-packages/sklearn/model_selection/_validation.py:978: UserWarning:
@@ -3695,17 +3828,17 @@ AttributeError: Pipeline has none of the following attributes: predict_proba.
 </div>
 <p>LogReg (Indica vs Hybrid) ROC-AUC: 0.7910503689659224 SVC (poly) (Indica vs. Hybrid) ROC-AUC: 0.8760026950514963</p>
 <p>Hybrid vs. Sativa</p>
-<div id="ac326c20" class="cell" data-execution_count="18">
+<div id="f73b1dc8" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;hybrid&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;hybrid&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Hybrid vs Sativa) ROC-AUC:&quot;</span>, auc_lr)</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Hybrid vs. Sativa) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>X_pair <span class="op">=</span> X[y.isin([<span class="st">&quot;hybrid&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>y_pair <span class="op">=</span> y[y.isin([<span class="st">&quot;hybrid&quot;</span>, <span class="st">&quot;sativa&quot;</span>])]</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>auc_lr <span class="op">=</span> cross_val_score(lr_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>auc_svc <span class="op">=</span> cross_val_score(svc_pipe, X_pair, y_pair, scoring<span class="op">=</span><span class="st">&quot;roc_auc&quot;</span>, cv<span class="op">=</span>cv).mean()</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;LogReg (Hybrid vs Sativa) ROC-AUC:&quot;</span>, auc_lr)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;SVC (poly) (Hybrid vs. Sativa) ROC-AUC:&quot;</span>, auc_svc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>LogReg (Hybrid vs Sativa) ROC-AUC: 0.7359636512238138
